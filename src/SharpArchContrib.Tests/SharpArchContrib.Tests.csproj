@@ -148,22 +148,35 @@
     <Compile Include="DomainModel\NHibernateMaps\TestEntityMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocatorInitializer.cs" />
+    <Compile Include="SharpArchContrib.Castle\Logging\ILogTestClass.cs" />
+    <Compile Include="SharpArchContrib.Castle\Logging\LoggingTests.cs" />
+    <Compile Include="SharpArchContrib.Castle\Logging\LogTestClass.cs" />
+    <Compile Include="NHibernateTests\ITransactionTestProvider.cs" />
+    <Compile Include="SharpArchContrib.Castle\NHibernate\NHibernateTransactionTestProvider.cs" />
+    <Compile Include="SharpArchContrib.Castle\NHibernate\NHibernateUnitOfWorkTestProvider.cs" />
+    <Compile Include="SharpArchContrib.Castle\NHibernate\SystemTransactionTestProvider.cs" />
+    <Compile Include="SharpArchContrib.Castle\NHibernate\SystemUnitOfWorkTestProvider.cs" />
+    <Compile Include="SharpArchContrib.Castle\NHibernate\TransactionAttributeTests.cs" />
+    <Compile Include="NHibernateTests\TransactionTestProviderBase.cs" />
+    <Compile Include="NHibernateTests\TransactionTests.cs" />
+    <Compile Include="NHibernateTests\TransactionTestsBase.cs" />
     <Compile Include="SharpArchContrib.PostSharp\Logging\DebugLevelTests.cs" />
     <Compile Include="SharpArchContrib.PostSharp\Logging\ExceptionHandlerAttributeTests.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\ITransactionTestProvider.cs" />
     <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateTransactionTestProvider.cs" />
     <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateUnitOfWorkTestProvider.cs" />
     <Compile Include="SharpArchContrib.PostSharp\NHibernate\SystemTransactionTestProvider.cs" />
     <Compile Include="SharpArchContrib.PostSharp\NHibernate\SystemUnitOfWorkTestProvider.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\TransactionTestProviderBase.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\TransactionTests.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\TransactionTestsBase.cs" />
     <Compile Include="SyntaxHelper.cs" />
+    <Compile Include="TestCategories.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharpArchContrib.Castle\SharpArchContrib.Castle.csproj">
+      <Project>{557E1790-FBDD-4FDE-86B2-93E2AD0E9E24}</Project>
+      <Name>SharpArchContrib.Castle</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpArchContrib.Core\SharpArchContrib.Core.csproj">
       <Project>{EB8DABCF-B11F-49D4-B858-67C37AA204DB}</Project>
       <Name>SharpArchContrib.Core</Name>

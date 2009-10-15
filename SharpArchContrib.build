@@ -19,7 +19,7 @@
 
   
   <!-- Version Info -->
-  <property name="appVersion" value="0.1.0"/>
+  <property name="appVersion" value="0.2.0"/>
   <property name="revision" value="0"/>
   <property name="company.name" value="Codai, LLC"/>
   

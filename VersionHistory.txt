@@ -1,3 +1,80 @@
-Early Beta (0.1.0)
---------------------
-Everything is new
+Version 0.2.0
+===============================================================================
+Castle Interceptor versions of Log, Transaction and UnitOfWork attributes added.
+
+I am looking for suggestions on how to make the Castle versions of these 
+attributes work better.  Please post comments to the SharpArch list.
+
+Setup of Castle Container (Follow This if Using PostSharp or Castle Attributes)
+-------------------------------------------------------------------------------
+
+Before doing anything else with your container, call:
+
+SharpArchContrib.Castle.CastleWindsor.ComponentRegistrar.AddComponent(container);
+
+This should be done if you either PostSharp or the Castle versions of Log, 
+UnitOfWork and Transaction.
+
+By default, this will setup the interceptor to use NHibernate transactions.  If you 
+would like to use Microsoft System.Transaction (TransactionScope) transactions
+instead, make the following call instead of the one above:
+
+SharpArchContrib.Castle.CastleWindsor.ComponentRegistrar.AddComponent(container,
+  typeof(SharpArchContrib.Data.NHibernate.SystemTransactionManager);
+
+If you use the Castle interceptor, you will not need to configure your project
+to use PostSharp and you will not need to reference SharpArchContrib.PostSharp
+or the PostSharp dlls.
+
+Differences in How Castle Versions of Attributes Work
+-------------------------------------------------------
+The Log attribute can be placed at the assembly, class or method level.
+The Transaction and UnitOfWork attributes can be placed at the class or method
+level.  The interceptors only apply logic to methods that are covered by an 
+attribute. For example, if you place the Log attribute at the class level, all
+methods in that class are logged.
+
+If multiple Log attributes are associated with a method (e.g. there is one
+at the assembly level and another at the class level), the method
+is logged using the most permissive log level.  For example, if the assembly
+attribute has logging at the Info level and the class attribute has logging
+at the Error level, logging will be at the Info level.  Only one log entry
+will be made even if there are multiple log attributes for a method.
+
+If multiple Transaction/UnitOfWork attributes are detected, the settings
+from the first attribute will be used.  The method attributes are checked
+before the class attributes.
+
+Obviously, interceptors will only work for classes managed by 
+Castle.  For example, services obtained using ServiceLocator.Current.GetInstance
+will work provided you make sure to call 
+SharpArchContrib.Castle.CastleWindsor.ComponentRegistrar.AddComponent before
+registering any of your services.  
+
+Less obviously, the appropriate interceptors can be attached to proxies created via 
+Castle's Proxy generator.  The only limitation is that Castle proxies can only
+proxy virtual methods or interfaces and so the interceptors will only work on  the virtual 
+methods or interface implementations.  For example, the following attaches the log interceptor 
+to an instance:
+
+ var testLogger2 =
+                generator.CreateClassProxy<TestLogger2>(
+                    ServiceLocator.Current.GetInstance<IInterceptor>("LogInterceptor"));
+
+Logging will still only occur if the approproate attributes are found.  For example,
+if TestLogger2 looked like the following, MyMethod would not be logged:
+
+public class TestLogger2 {
+  public virtual void MyMethod(){
+    //do something
+  }
+}
+
+On the other hand, logging will occur if the class looks like this:
+
+public class TestLogger2 {
+  [Log]
+  public virtual void MyMethod(){
+    //do something
+  }
+}

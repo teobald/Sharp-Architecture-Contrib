@@ -19,16 +19,10 @@ namespace Tests.SharpArchContrib.PostSharp.Logging {
             DebugLevelTestsCallThatLogs();
             DebugLevelTestsCallThatDoesNotLog();
             string logPath =
-                Path.GetFullPath(@"TestData/Tests.SharpArch.Contrib.Core.Logging.DebugLevelTests.DebugLevel.log");
+                Path.GetFullPath(@"TestData/Tests.SharpArchContrib.PostSharp.Logging.DebugLevelTests.DebugLevel.log");
             File.Exists(logPath).ShouldBeTrue();
             var debugLogInfo = new FileInfo(logPath);
             debugLogInfo.Length.ShouldBeGreaterThan(0);
-
-            string infoLogPath =
-                Path.GetFullPath(@"TestData/Tests.SharpArch.Contrib.Core.Logging.DebugLevelTests.InfoLevel.log");
-            File.Exists(infoLogPath).ShouldBeTrue();
-            var infoLogInfo = new FileInfo(infoLogPath);
-            infoLogInfo.Length.ShouldEqual(0);
         }
     }
 }

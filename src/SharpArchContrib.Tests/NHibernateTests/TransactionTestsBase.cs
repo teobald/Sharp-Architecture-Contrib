@@ -10,7 +10,7 @@ using SharpArch.Data.NHibernate.FluentNHibernate;
 using SharpArchContrib.Data.NHibernate;
 using Tests.DomainModel.Entities;
 
-namespace Tests.SharpArchContrib.PostSharp.NHibernate {
+namespace Tests.NHibernateTests {
     public class TransactionTestsBase {
         protected IRepository<TestEntity> testEntityRepository;
 
@@ -31,12 +31,12 @@ namespace Tests.SharpArchContrib.PostSharp.NHibernate {
             if (File.Exists("db.dat")) {
                 File.Delete("db.dat");
             }
-            global::NHibernate.Cfg.Configuration cfg = InitializeNHibernateSession();
+            NHibernate.Cfg.Configuration cfg = InitializeNHibernateSession();
             IDbConnection connection = NHibernateSession.Current.Connection;
             new SchemaExport(cfg).Execute(false, true, false, connection, null);
         }
 
-        private global::NHibernate.Cfg.Configuration InitializeNHibernateSession() {
+        private NHibernate.Cfg.Configuration InitializeNHibernateSession() {
             string[] mappingAssemblies = GetMappingAssemblies();
             AutoPersistenceModel autoPersistenceModel = GetAutoPersistenceModel(mappingAssemblies);
             return NHibernateSession.Init(new ThreadSessionStorage(), mappingAssemblies, autoPersistenceModel,
@@ -53,7 +53,7 @@ namespace Tests.SharpArchContrib.PostSharp.NHibernate {
                 Type[] asmTypes = asm.GetTypes();
 
                 foreach (Type asmType in asmTypes) {
-                    if (typeof (IAutoPersistenceModelGenerator).IsAssignableFrom(asmType)) {
+                    if (typeof(IAutoPersistenceModelGenerator).IsAssignableFrom(asmType)) {
                         var generator = Activator.CreateInstance(asmType) as IAutoPersistenceModelGenerator;
                         return generator.Generate();
                     }

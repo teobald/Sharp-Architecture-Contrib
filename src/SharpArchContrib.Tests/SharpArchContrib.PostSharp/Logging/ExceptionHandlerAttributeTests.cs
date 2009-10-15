@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework;
 using SharpArch.Testing.NUnit;
 using SharpArchContrib.Core.Logging;
@@ -7,23 +7,23 @@ using SharpArchContrib.PostSharp.Logging;
 namespace Tests.SharpArchContrib.PostSharp.Logging {
     [TestFixture]
     public class ExceptionHandlerAttributeTests {
-        [global::SharpArchContrib.PostSharp.Logging.ExceptionHandler]
+        [ExceptionHandler]
         private void ThrowException() {
             throw new NotImplementedException();
         }
 
-        [global::SharpArchContrib.PostSharp.Logging.ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
+        [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
         private float ThrowExceptionSilentWithReturn() {
             throw new NotImplementedException();
             return 7f;
         }
 
-        [global::SharpArchContrib.PostSharp.Logging.ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
+        [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
         private void ThrowExceptionSilent() {
             throw new NotImplementedException();
         }
 
-        [global::SharpArchContrib.PostSharp.Logging.ExceptionHandler(IsSilent = true, ReturnValue = 6f,
+        [ExceptionHandler(IsSilent = true, ReturnValue = 6f,
             AspectPriority = 1)]
         [Log(ExceptionLevel = LoggingLevel.Error, AspectPriority = 2)]
         private float ThrowExceptionSilentWithReturnWithLogAttribute() {

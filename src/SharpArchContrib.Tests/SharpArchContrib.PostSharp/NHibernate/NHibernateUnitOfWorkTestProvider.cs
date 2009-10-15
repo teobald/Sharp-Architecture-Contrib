@@ -1,5 +1,6 @@
 using SharpArchContrib.Data.NHibernate;
 using SharpArchContrib.PostSharp.NHibernate;
+using Tests.NHibernateTests;
 
 namespace Tests.SharpArchContrib.PostSharp.NHibernate {
     public class NHibernateUnitOfWorkTestProvider : TransactionTestProviderBase, ITransactionTestProvider {
@@ -9,10 +10,10 @@ namespace Tests.SharpArchContrib.PostSharp.NHibernate {
 
         #region ITransactionTestProvider Members
 
-        [UnitOfWork]
-        public override void Commit(string testEntityName) {
-            base.Commit(testEntityName);
+        public string Name {
+            get { return "PostSharp NHibernateUnitOfWorkTestProvider"; }
         }
+
 
         [UnitOfWork]
         public override void DoCommit(string testEntityName) {
@@ -45,7 +46,7 @@ namespace Tests.SharpArchContrib.PostSharp.NHibernate {
         }
 
         public void InitTransactionManager() {
-            ServiceLocatorInitializer.Init(typeof (NHibernateTransactionManager));
+            ServiceLocatorInitializer.Init(typeof(NHibernateTransactionManager));
         }
 
         #endregion

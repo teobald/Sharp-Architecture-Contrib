@@ -14,11 +14,11 @@ namespace Tests.DomainModel {
 
         public AutoPersistenceModel Generate() {
             var mappings = new AutoPersistenceModel();
-            mappings.AddEntityAssembly(typeof (TestEntity).Assembly).Where(GetAutoMappingFilter);
+            mappings.AddEntityAssembly(typeof(TestEntity).Assembly).Where(GetAutoMappingFilter);
             mappings.Conventions.Setup(GetConventions());
             mappings.Setup(GetSetup());
             mappings.IgnoreBase<Entity>();
-            mappings.IgnoreBase(typeof (EntityWithTypedId<>));
+            mappings.IgnoreBase(typeof(EntityWithTypedId<>));
             mappings.UseOverridesFromAssemblyOf<AutoPersistenceModelGenerator>();
             return mappings;
         }
@@ -45,7 +45,7 @@ namespace Tests.DomainModel {
         private bool GetAutoMappingFilter(Type t) {
             return t.GetInterfaces().Any(x =>
                                          x.IsGenericType &&
-                                         x.GetGenericTypeDefinition() == typeof (IEntityWithTypedId<>));
+                                         x.GetGenericTypeDefinition() == typeof(IEntityWithTypedId<>));
         }
     }
 }

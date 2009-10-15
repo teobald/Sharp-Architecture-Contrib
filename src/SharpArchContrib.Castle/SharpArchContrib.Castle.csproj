@@ -12,6 +12,8 @@
     <AssemblyName>SharpArchContrib.Castle</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>SharpArchContrib.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,6 +65,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="SharpArch.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b5f559ae0ac4e006, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SharpArch.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpArch.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b5f559ae0ac4e006, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SharpArch.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -77,6 +87,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="Logging\LogAttribute.cs" />
+    <Compile Include="Logging\LogFacility.cs" />
+    <Compile Include="Logging\LogInterceptor.cs" />
+    <Compile Include="AttributeControlledFacilityBase.cs" />
+    <Compile Include="NHibernate\TransactionInterceptor.cs" />
+    <Compile Include="NHibernate\TransactionFacility.cs" />
+    <Compile Include="NHibernate\TransactionAttribute.cs" />
+    <Compile Include="NHibernate\UnitOfWorkAttribute.cs" />
+    <Compile Include="NHibernate\UnitOfWorkFacility.cs" />
+    <Compile Include="NHibernate\UnitOfWorkInterceptor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -84,6 +105,13 @@
       <Project>{EB8DABCF-B11F-49D4-B858-67C37AA204DB}</Project>
       <Name>SharpArchContrib.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SharpArchContrib.Data\SharpArchContrib.Data.csproj">
+      <Project>{E33E2468-B055-4F3D-83DB-8F991F600A47}</Project>
+      <Name>SharpArchContrib.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SharpArchContrib.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

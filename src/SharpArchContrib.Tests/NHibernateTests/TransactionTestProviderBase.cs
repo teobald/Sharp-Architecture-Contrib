@@ -6,7 +6,7 @@ using SharpArch.Testing.NUnit;
 using SharpArchContrib.Data.NHibernate;
 using Tests.DomainModel.Entities;
 
-namespace Tests.SharpArchContrib.PostSharp.NHibernate {
+namespace Tests.NHibernateTests {
     public abstract class TransactionTestProviderBase {
         protected abstract string TestEntityName { get; }
         public IRepository<TestEntity> TestEntityRepository { get; set; }

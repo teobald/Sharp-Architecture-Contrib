@@ -1,5 +1,6 @@
-﻿using SharpArchContrib.Data.NHibernate;
+using SharpArchContrib.Data.NHibernate;
 using SharpArchContrib.PostSharp.NHibernate;
+using Tests.NHibernateTests;
 
 namespace Tests.SharpArchContrib.PostSharp.NHibernate {
     public class SystemTransactionTestProvider : TransactionTestProviderBase, ITransactionTestProvider {
@@ -9,9 +10,8 @@ namespace Tests.SharpArchContrib.PostSharp.NHibernate {
 
         #region ITransactionTestProvider Members
 
-        [Transaction]
-        public override void Commit(string testEntityName) {
-            base.Commit(testEntityName);
+        public string Name {
+            get { return "PostSharp SystemTransactionTestProvider"; }
         }
 
         [Transaction]
@@ -45,7 +45,7 @@ namespace Tests.SharpArchContrib.PostSharp.NHibernate {
         }
 
         public void InitTransactionManager() {
-            ServiceLocatorInitializer.Init(typeof (SystemTransactionManager));
+            ServiceLocatorInitializer.Init(typeof(SystemTransactionManager));
         }
 
         #endregion

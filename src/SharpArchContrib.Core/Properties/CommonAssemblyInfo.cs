@@ -13,7 +13,7 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisibleAttribute(false)]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("0.1.0")]
-[assembly: AssemblyFileVersionAttribute("0.1.0.0")]
+[assembly: AssemblyVersionAttribute("0.2.0")]
+[assembly: AssemblyFileVersionAttribute("0.2.0.0")]
 [assembly: AssemblyCopyrightAttribute("Copyright © Codai, LLC 2009")]
 

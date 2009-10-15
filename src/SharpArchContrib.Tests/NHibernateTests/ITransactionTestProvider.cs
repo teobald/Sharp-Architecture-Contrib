@@ -1,11 +1,11 @@
 ﻿using SharpArch.Core.PersistenceSupport;
 using Tests.DomainModel.Entities;
 
-namespace Tests.SharpArchContrib.PostSharp.NHibernate {
+namespace Tests.NHibernateTests {
     public interface ITransactionTestProvider {
         IRepository<TestEntity> TestEntityRepository { get; set; }
+        string Name { get; }
         void InitTransactionManager();
-        void Commit(string testEntityName);
         void CheckNumberOfEntities(int numberOfEntities);
         void DoCommit(string testEntityName);
         void DoCommitSilenceException(string testEntityName);

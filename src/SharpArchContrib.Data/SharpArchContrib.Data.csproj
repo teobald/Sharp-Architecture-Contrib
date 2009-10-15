@@ -53,6 +53,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -99,15 +103,19 @@
     <Compile Include="..\SharpArchContrib.Core\Properties\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="NHibernate\AbortTransactionException.cs" />
     <Compile Include="NHibernate\IThreadSafeDictionary.cs" />
+    <Compile Include="NHibernate\ITransactionAttributeSettings.cs" />
     <Compile Include="NHibernate\ITransactionManager.cs" />
     <Compile Include="NHibernate\IUnitOfWorkSessionStorage.cs" />
     <Compile Include="NHibernate\NHibernateTransactionManager.cs" />
     <Compile Include="NHibernate\ThreadSafeDictionary.cs" />
     <Compile Include="NHibernate\ThreadSessionStorage.cs" />
     <Compile Include="NHibernate\SystemTransactionManager.cs" />
+    <Compile Include="NHibernate\TransactionAttributeSettings.cs" />
     <Compile Include="NHibernate\TransactionManagerBase.cs" />
+    <Compile Include="NHibernate\UnitOfWorkAttributeSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

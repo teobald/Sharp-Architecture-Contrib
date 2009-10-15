@@ -2,6 +2,7 @@ using System;
 using Microsoft.Practices.ServiceLocation;
 using PostSharp.Extensibility;
 using PostSharp.Laos;
+using SharpArch.Core;
 using SharpArch.Data.NHibernate;
 using SharpArchContrib.Core.Logging;
 using SharpArchContrib.Data.NHibernate;
@@ -10,17 +11,34 @@ namespace SharpArchContrib.PostSharp.NHibernate {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
     [MulticastAttributeUsage(MulticastTargets.Method, AllowMultiple = true)]
     [Serializable]
-    public class TransactionAttribute : OnMethodBoundaryAspect {
+    public class TransactionAttribute : OnMethodBoundaryAspect, ITransactionAttributeSettings {
         private IExceptionLogger exceptionLogger;
+        protected TransactionAttributeSettings settings;
         private ITransactionManager transactionManager;
 
         public TransactionAttribute() {
-            FactoryKey = NHibernateSession.DefaultFactoryKey;
+            settings = new TransactionAttributeSettings();
         }
 
-        public string FactoryKey { get; set; }
-        public bool IsExceptionSilent { get; set; }
-        public object ReturnValue { get; set; }
+        public string FactoryKey {
+            get { return Settings.FactoryKey; }
+            set {
+                if (value == null) {
+                    throw new PreconditionException("FactoryKey cannot be null");
+                }
+                Settings.FactoryKey = value;
+            }
+        }
+
+        public bool IsExceptionSilent {
+            get { return Settings.IsExceptionSilent; }
+            set { Settings.IsExceptionSilent = value; }
+        }
+
+        public object ReturnValue {
+            get { return Settings.ReturnValue; }
+            set { Settings.ReturnValue = value; }
+        }
 
         protected ITransactionManager TransactionManager {
             get {
@@ -39,6 +57,20 @@ namespace SharpArchContrib.PostSharp.NHibernate {
                 return exceptionLogger;
             }
         }
+
+        #region ITransactionAttributeSettings Members
+
+        public TransactionAttributeSettings Settings {
+            get { return settings; }
+            set {
+                if (value == null) {
+                    throw new PreconditionException("Settings must not be null");
+                }
+                settings = value;
+            }
+        }
+
+        #endregion
 
         public override void OnEntry(MethodExecutionEventArgs eventArgs) {
             eventArgs.InstanceTag = TransactionManager.PushTransaction(FactoryKey, eventArgs.InstanceTag);

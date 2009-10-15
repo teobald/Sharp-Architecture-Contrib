@@ -69,6 +69,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\PostSharp.Public.dll</HintPath>
     </Reference>
+    <Reference Include="SharpArch.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b5f559ae0ac4e006, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SharpArch.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -83,10 +87,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
     <Compile Include="Logging\ExceptionLogger.cs" />
     <Compile Include="Logging\IExceptionLogger.cs" />
+    <Compile Include="Logging\IMethodLogger.cs" />
     <Compile Include="Logging\Log4NetHelper.cs" />
+    <Compile Include="Logging\LogAttributeSettings.cs" />
     <Compile Include="Logging\LoggingLevel.cs" />
+    <Compile Include="Logging\MethodLogger.cs" />
+    <Compile Include="ParameterCheck.cs" />
     <Compile Include="Properties\CommonAssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

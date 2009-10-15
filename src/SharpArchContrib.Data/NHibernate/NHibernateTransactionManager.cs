@@ -8,6 +8,10 @@ namespace SharpArchContrib.Data.NHibernate {
     /// </summary>
     [Serializable]
     public class NHibernateTransactionManager : TransactionManagerBase {
+        public override string Name {
+            get { return "NHibernate TransactionManager"; }
+        }
+
         public override object PushTransaction(string factoryKey, object transactionState) {
             transactionState = base.PushTransaction(factoryKey, transactionState);
 

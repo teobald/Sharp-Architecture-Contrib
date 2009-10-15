@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using System.Text;
+using System;
 using log4net;
 using Microsoft.Practices.ServiceLocation;
 using PostSharp.Extensibility;
@@ -15,62 +13,48 @@ namespace SharpArchContrib.PostSharp.Logging {
         MulticastTargets.Method | MulticastTargets.InstanceConstructor | MulticastTargets.StaticConstructor,
         AllowMultiple = true)]
     public class LogAttribute : OnMethodBoundaryAspect {
-        private IExceptionLogger exceptionLogger;
+        private IMethodLogger methodLogger;
 
         public LogAttribute() {
-            EntryLevel = LoggingLevel.Debug;
-            SuccessLevel = LoggingLevel.Debug;
-            ExceptionLevel = LoggingLevel.Error;
+            Settings = new LogAttributeSettings(LoggingLevel.Debug, LoggingLevel.Debug, LoggingLevel.Error);
         }
 
-        public LoggingLevel EntryLevel { get; set; }
-        public LoggingLevel SuccessLevel { get; set; }
-        public LoggingLevel ExceptionLevel { get; set; }
+        public LoggingLevel EntryLevel {
+            get { return Settings.EntryLevel; }
+            set { Settings.EntryLevel = value; }
+        }
 
-        private IExceptionLogger ExceptionLogger {
+        public LoggingLevel SuccessLevel {
+            get { return Settings.SuccessLevel; }
+            set { Settings.SuccessLevel = value; }
+        }
+
+        public LoggingLevel ExceptionLevel {
+            get { return Settings.ExceptionLevel; }
+            set { Settings.ExceptionLevel = value; }
+        }
+
+        public LogAttributeSettings Settings { get; set; }
+
+        private IMethodLogger MethodLogger {
             get {
-                if (exceptionLogger == null) {
-                    exceptionLogger = ServiceLocator.Current.GetInstance<IExceptionLogger>();
+                if (methodLogger == null) {
+                    methodLogger = ServiceLocator.Current.GetInstance<IMethodLogger>();
                 }
-                return exceptionLogger;
+                return methodLogger;
             }
         }
 
         public override void OnEntry(MethodExecutionEventArgs eventArgs) {
-            ILog logger = LogManager.GetLogger(eventArgs.Method.DeclaringType);
-            if (ShouldLog(logger, EntryLevel, eventArgs)) {
-                var logMessage = new StringBuilder();
-                logMessage.Append(string.Format("{0}(", eventArgs.Method.Name));
-
-                object[] argumentValues = eventArgs.GetReadOnlyArgumentArray();
-                ParameterInfo[] parameterInfos = eventArgs.Method.GetParameters();
-                if (argumentValues != null && parameterInfos != null) {
-                    for (int i = 0; i < argumentValues.Length; i++) {
-                        if (i > 0) {
-                            logMessage.Append(" ");
-                        }
-                        logMessage.Append(string.Format("{0}:[{1}]", parameterInfos[i].Name, argumentValues[i]));
-                    }
-                }
-                logMessage.Append(")");
-                logger.Log(EntryLevel, logMessage.ToString());
-            }
+            MethodLogger.LogEntry(eventArgs.Method, eventArgs.GetReadOnlyArgumentArray(), EntryLevel);
         }
 
         public override void OnSuccess(MethodExecutionEventArgs eventArgs) {
-            ILog logger = LogManager.GetLogger(eventArgs.Method.DeclaringType);
-            if (ShouldLog(logger, SuccessLevel, eventArgs)) {
-                logger.Log(SuccessLevel,
-                           string.Format("{0} Returns:[{1}]", eventArgs.Method.Name,
-                                         eventArgs.ReturnValue != null ? eventArgs.ReturnValue.ToString() : ""));
-            }
+            methodLogger.LogSuccess(eventArgs.Method, eventArgs.ReturnValue, SuccessLevel);
         }
 
         public override void OnException(MethodExecutionEventArgs eventArgs) {
-            ILog logger = LogManager.GetLogger(eventArgs.Method.DeclaringType);
-            if (ShouldLog(logger, ExceptionLevel, eventArgs)) {
-                ExceptionLogger.LogException(eventArgs.Exception, false, eventArgs.Method.DeclaringType);
-            }
+            methodLogger.LogException(eventArgs.Method, eventArgs.Exception, ExceptionLevel);
         }
 
         private bool ShouldLog(ILog logger, LoggingLevel loggingLevel, MethodExecutionEventArgs args) {
