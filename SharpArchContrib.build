@@ -100,6 +100,7 @@
         <attribute type="AssemblyFileVersionAttribute" value="${appVersion}.${revision}"/>
         <attribute type="AssemblyCopyrightAttribute" value="Copyright © ${company.name} ${datetime::get-year(datetime::now())}" />
         <attribute type="AssemblyProductAttribute" value="S#arp Architecture Contrib (${configuration})"/>
+        <attribute type="AssemblyConfigurationAttribute" value="${configuration}"/>
       </attributes>
     </asminfo>
   </target>
