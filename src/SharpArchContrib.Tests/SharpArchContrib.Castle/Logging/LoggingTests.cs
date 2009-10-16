@@ -34,7 +34,6 @@ namespace Tests.SharpArchContrib.Castle.Logging {
                 return message;
             }
 
-            [Log]
             [Log(EntryLevel = LoggingLevel.Info)]
             public virtual string GetMessageVirtual(string message) {
                 return message;

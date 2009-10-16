@@ -6,7 +6,7 @@ using SharpArchContrib.Data.NHibernate;
 
 namespace SharpArchContrib.PostSharp.NHibernate {
     [Serializable]
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     [MulticastAttributeUsage(MulticastTargets.Method, AllowMultiple = true)]
     public sealed class UnitOfWorkAttribute : TransactionAttribute {
         public UnitOfWorkAttribute() {

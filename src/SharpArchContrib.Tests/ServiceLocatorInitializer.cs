@@ -9,7 +9,7 @@ using Tests.SharpArchContrib.Castle.Logging;
 using Tests.SharpArchContrib.Castle.NHibernate;
 
 namespace Tests {
-    public class ServiceLocatorInitializer {
+    public static class ServiceLocatorInitializer {
         public static void Init() {
             Init(typeof(NHibernateTransactionManager));
         }
@@ -17,6 +17,11 @@ namespace Tests {
         public static void Init(Type transactionManagerType) {
             IWindsorContainer container = new WindsorContainer();
             ComponentRegistrar.AddComponentsTo(container, transactionManagerType);
+            RegisterTestServices(container);
+            ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
+        }
+
+        private static void RegisterTestServices(IWindsorContainer container) {
             container.AddComponent("LogTestClass", typeof(ILogTestClass), typeof(LogTestClass));
             container.AddComponent("SystemTransactionTestProvider", typeof(ITransactionTestProvider),
                                    typeof(SystemTransactionTestProvider));
@@ -26,7 +31,8 @@ namespace Tests {
                                    typeof(SystemUnitOfWorkTestProvider));
             container.AddComponent("NHibernateUnitOfWorkTestProvider", typeof(ITransactionTestProvider),
                                    typeof(NHibernateUnitOfWorkTestProvider));
-            ServiceLocator.SetLocatorProvider(() => new WindsorServiceLocator(container));
+            container.AddComponent("ExceptionHandlerTestClass", typeof(IExceptionHandlerTestClass),
+                                   typeof(ExceptionHandlerTestClass));
         }
     }
 }

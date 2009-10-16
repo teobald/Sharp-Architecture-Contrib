@@ -18,12 +18,20 @@ namespace SharpArchContrib.PostSharp.Logging {
         /// Constructor
         /// </summary>
         public ExceptionHandlerAttribute() {
-            IsSilent = false;
+            Settings = new ExceptionHandlerAttributeSettings();
         }
 
-        public bool IsSilent { get; set; }
+        public bool IsSilent {
+            get { return Settings.IsSilent; }
+            set { Settings.IsSilent = value; }
+        }
 
-        public object ReturnValue { get; set; }
+        public object ReturnValue {
+            get { return Settings.ReturnValue; }
+            set { Settings.ReturnValue = value; }
+        }
+
+        public ExceptionHandlerAttributeSettings Settings { get; set; }
 
         private IExceptionLogger ExceptionLogger {
             get {

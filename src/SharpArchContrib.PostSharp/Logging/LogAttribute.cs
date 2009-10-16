@@ -7,7 +7,7 @@ using SharpArchContrib.Core.Logging;
 
 namespace SharpArchContrib.PostSharp.Logging {
     [Serializable]
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true,
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false,
         Inherited = false)]
     [MulticastAttributeUsage(
         MulticastTargets.Method | MulticastTargets.InstanceConstructor | MulticastTargets.StaticConstructor,

@@ -18,6 +18,7 @@ namespace SharpArchContrib.Castle.CastleWindsor {
                 Core.CastleWindsor.ComponentRegistrar.AddComponentsTo(container);
                 Data.CastleWindsor.ComponentRegistrar.AddComponentsTo(container, transactionManagerType);
                 container.AddFacility("LogFacility", new LogFacility());
+                container.AddFacility("ExceptionHandlerFacility", new ExceptionHandlerFacility());
                 container.AddFacility("TransactionFacility", new TransactionFacility());
                 container.AddFacility("UnitOfWorkFacility", new UnitOfWorkFacility());
             }

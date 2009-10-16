@@ -2,7 +2,7 @@ using System;
 using SharpArchContrib.Core.Logging;
 
 namespace SharpArchContrib.Castle.Logging {
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true,
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false,
         Inherited = false)]
     public class LogAttribute : Attribute {
         public LogAttribute() {

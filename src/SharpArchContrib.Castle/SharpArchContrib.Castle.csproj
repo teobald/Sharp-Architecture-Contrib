@@ -91,6 +91,9 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="Logging\ExceptionHandlerAttribute.cs" />
+    <Compile Include="Logging\ExceptionHandlerFacility.cs" />
+    <Compile Include="Logging\ExceptionHandlerInterceptor.cs" />
     <Compile Include="Logging\LogAttribute.cs" />
     <Compile Include="Logging\LogFacility.cs" />
     <Compile Include="Logging\LogInterceptor.cs" />

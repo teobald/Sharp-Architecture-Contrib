@@ -8,7 +8,7 @@ using SharpArchContrib.Core.Logging;
 using SharpArchContrib.Data.NHibernate;
 
 namespace SharpArchContrib.PostSharp.NHibernate {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     [MulticastAttributeUsage(MulticastTargets.Method, AllowMultiple = true)]
     [Serializable]
     public class TransactionAttribute : OnMethodBoundaryAspect, ITransactionAttributeSettings {

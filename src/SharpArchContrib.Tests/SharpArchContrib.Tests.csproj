@@ -148,6 +148,9 @@
     <Compile Include="DomainModel\NHibernateMaps\TestEntityMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocatorInitializer.cs" />
+    <Compile Include="SharpArchContrib.Castle\Logging\ExceptionHandlerAttributeTests.cs" />
+    <Compile Include="SharpArchContrib.Castle\Logging\ExceptionHandlerTestClass.cs" />
+    <Compile Include="SharpArchContrib.Castle\Logging\IExceptionHandlerTestClass.cs" />
     <Compile Include="SharpArchContrib.Castle\Logging\ILogTestClass.cs" />
     <Compile Include="SharpArchContrib.Castle\Logging\LoggingTests.cs" />
     <Compile Include="SharpArchContrib.Castle\Logging\LogTestClass.cs" />

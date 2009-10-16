@@ -10,7 +10,6 @@ namespace Tests.SharpArchContrib.PostSharp.Logging {
         [Log]
         private void DebugLevelTestsCallThatLogs() {}
 
-        [Log]
         [Log(EntryLevel = LoggingLevel.Info)]
         private void DebugLevelTestsCallThatDoesNotLog() {}
 

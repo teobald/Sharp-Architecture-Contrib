@@ -25,11 +25,11 @@ namespace SharpArchContrib.Castle.Logging {
             //we take the most permissive log settings from the attributes we find
             //If there is at least one attribute, the call gets wrapped with a transaction
             var assemblyLogAttributes =
-                (LogAttribute[]) methodInfo.ReflectedType.Assembly.GetCustomAttributes(typeof(LogAttribute), true);
+                (LogAttribute[]) methodInfo.ReflectedType.Assembly.GetCustomAttributes(typeof(LogAttribute), false);
             var classLogAttributes =
-                (LogAttribute[]) methodInfo.ReflectedType.GetCustomAttributes(typeof(LogAttribute), true);
+                (LogAttribute[]) methodInfo.ReflectedType.GetCustomAttributes(typeof(LogAttribute), false);
             var methodLogAttributes =
-                (LogAttribute[]) methodInfo.GetCustomAttributes(typeof(LogAttribute), true);
+                (LogAttribute[]) methodInfo.GetCustomAttributes(typeof(LogAttribute), false);
 
             if (assemblyLogAttributes.Length == 0 && classLogAttributes.Length == 0 && methodLogAttributes.Length == 0) {
                 invocation.Proceed();

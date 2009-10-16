@@ -3,7 +3,7 @@ using SharpArch.Core;
 using SharpArchContrib.Data.NHibernate;
 
 namespace SharpArchContrib.Castle.NHibernate {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     public class UnitOfWorkAttribute : Attribute, ITransactionAttributeSettings {
         private TransactionAttributeSettings settings;
 
