@@ -19,6 +19,12 @@ namespace SharpArchContrib.Castle.Logging {
             set { Settings.ReturnValue = value; }
         }
 
+        public Type ExceptionType
+        {
+            get { return Settings.ExceptionType; }
+            set { Settings.ExceptionType = value; }
+        }
+
         public ExceptionHandlerAttributeSettings Settings { get; set; }
     }
 }

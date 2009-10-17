@@ -4,5 +4,7 @@
         float ThrowExceptionSilentWithReturn();
         void ThrowExceptionSilent();
         float ThrowExceptionSilentWithReturnWithLogAttribute();
+        float ThrowBaseExceptionNoCatch();
+        float ThrowNotImplementedExceptionCatch();
     }
 }

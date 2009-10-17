@@ -36,5 +36,17 @@ namespace Tests.SharpArchContrib.Castle.Logging {
         public void LoggedExceptionRethrows() {
             Assert.Throws<NotImplementedException>(() => exceptionHandlerTestClass.ThrowException());
         }
+
+        [Test]
+        public void ThrowBaseExceptionNoCatch()
+        {
+            Assert.Throws<Exception>(() => exceptionHandlerTestClass.ThrowBaseExceptionNoCatch());
+        }
+
+        [Test]
+        public void ThrowNotImplementedExceptionCatch()
+        {
+            exceptionHandlerTestClass.ThrowNotImplementedExceptionCatch().ShouldEqual(6f);
+        }
     }
 }

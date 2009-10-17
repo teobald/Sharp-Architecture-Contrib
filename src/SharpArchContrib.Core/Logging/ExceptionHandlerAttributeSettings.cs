@@ -10,5 +10,6 @@ namespace SharpArchContrib.Core.Logging {
 
         public bool IsSilent { get; set; }
         public object ReturnValue { get; set; }
+        public Type ExceptionType { get; set; }
     }
 }

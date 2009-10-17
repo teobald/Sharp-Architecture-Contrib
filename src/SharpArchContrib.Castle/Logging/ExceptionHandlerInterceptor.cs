@@ -46,7 +46,15 @@ namespace SharpArchContrib.Castle.Logging {
                     exceptionLogger.LogException(err, exceptionHandlerAttributeSettings.IsSilent,
                                                  methodInfo.ReflectedType);
                     if (exceptionHandlerAttributeSettings.IsSilent) {
-                        invocation.ReturnValue = exceptionHandlerAttributeSettings.ReturnValue;
+                        if (exceptionHandlerAttributeSettings.ExceptionType == null ||
+                            exceptionHandlerAttributeSettings.ExceptionType == err.GetType())
+                        {
+                            invocation.ReturnValue = exceptionHandlerAttributeSettings.ReturnValue;
+                        }
+                        else
+                        {
+                            throw;
+                        }
                     }
                     else {
                         throw;

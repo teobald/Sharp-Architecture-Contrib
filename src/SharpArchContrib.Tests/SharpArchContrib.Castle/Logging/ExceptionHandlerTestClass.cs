@@ -29,6 +29,20 @@ namespace Tests.SharpArchContrib.Castle.Logging {
             return 7f;
         }
 
+        [ExceptionHandler(ExceptionType = typeof(NotImplementedException))]
+        public float ThrowBaseExceptionNoCatch()
+        {
+            throw new Exception();
+            return 7f;
+        }
+
+        [ExceptionHandler(IsSilent=true, ExceptionType = typeof(NotImplementedException), ReturnValue = 6f)]
+        public float ThrowNotImplementedExceptionCatch()
+        {
+            throw new NotImplementedException();
+            return 7f;
+        }
+
         #endregion
     }
 }
