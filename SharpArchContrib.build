@@ -143,6 +143,10 @@
         <include name="tools/PostSharp/**"/>
         <include name="tools/nant/**"/>
       </fileset>
+      <fileset basedir=".">
+        <include name="license.txt"/>
+        <include name="VersionHistory.txt"/>
+      </fileset>
     </zip>
 
     <zip zipfile="${distribution.dir}\${project::get-name()}-source-${appVersion}.${revision}.zip">
