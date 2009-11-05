@@ -91,14 +91,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="PostSharp.Laos, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\PostSharp.Laos.dll</HintPath>
-    </Reference>
-    <Reference Include="PostSharp.Public, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\PostSharp.Public.dll</HintPath>
-    </Reference>
     <Reference Include="SharpArch.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b5f559ae0ac4e006, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\SharpArch.Core.dll</HintPath>
@@ -163,12 +155,6 @@
     <Compile Include="NHibernateTests\TransactionTestProviderBase.cs" />
     <Compile Include="NHibernateTests\TransactionTests.cs" />
     <Compile Include="NHibernateTests\TransactionTestsBase.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\Logging\DebugLevelTests.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\Logging\ExceptionHandlerAttributeTests.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateTransactionTestProvider.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateUnitOfWorkTestProvider.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\SystemTransactionTestProvider.cs" />
-    <Compile Include="SharpArchContrib.PostSharp\NHibernate\SystemUnitOfWorkTestProvider.cs" />
     <Compile Include="SyntaxHelper.cs" />
     <Compile Include="TestCategories.cs" />
   </ItemGroup>
@@ -188,10 +174,6 @@
       <Project>{E33E2468-B055-4F3D-83DB-8F991F600A47}</Project>
       <Name>SharpArchContrib.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SharpArchContrib.PostSharp\SharpArchContrib.PostSharp.csproj">
-      <Project>{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}</Project>
-      <Name>SharpArchContrib.PostSharp</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="HibernateFile.cfg.xml">
@@ -203,7 +185,6 @@
     <Folder Include="SharpArchContrib.Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\tools\PostSharp\PostSharp-1.5.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,3 +1,10 @@
+Version 0.3.0
+==============================================================================
+Removed PostSharp support.  If you were using PostSharp, you can use
+the equivalent support found in SharpArchContrib.Castle instead.
+
+Works with the Q3 release of SharpArch. 
+
 Version 0.2.0
 ===============================================================================
 Castle Interceptor versions of Log, Transaction and UnitOfWork attributes added.

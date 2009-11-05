@@ -15,15 +15,15 @@ namespace Tests.NHibernateTests {
 
         public TransactionTests() {
             ServiceLocatorInitializer.Init(typeof(SystemTransactionManager));
-            transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.SystemTransactionTestProvider());
-            transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.SystemUnitOfWorkTestProvider());
+            //transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.SystemTransactionTestProvider());
+            //transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.SystemUnitOfWorkTestProvider());
             transactionTestProviders.Add(
                 ServiceLocator.Current.GetInstance<ITransactionTestProvider>("SystemTransactionTestProvider"));
             transactionTestProviders.Add(ServiceLocator.Current.GetInstance<ITransactionTestProvider>("SystemUnitOfWorkTestProvider"));
 
             ServiceLocatorInitializer.Init(typeof(NHibernateTransactionManager));
-            transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.NHibernateTransactionTestProvider());
-            transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.NHibernateUnitOfWorkTestProvider());
+            //transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.NHibernateTransactionTestProvider());
+            //transactionTestProviders.Add(new SharpArchContrib.PostSharp.NHibernate.NHibernateUnitOfWorkTestProvider());
             transactionTestProviders.Add(ServiceLocator.Current.GetInstance<ITransactionTestProvider>("NHibernateTransactionTestProvider"));
             transactionTestProviders.Add(ServiceLocator.Current.GetInstance<ITransactionTestProvider>("NHibernateUnitOfWorkTestProvider"));
         }

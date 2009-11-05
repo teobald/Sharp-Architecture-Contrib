@@ -19,22 +19,15 @@
 
   
   <!-- Version Info -->
-  <property name="appVersion" value="0.2.0"/>
+  <property name="appVersion" value="0.3.0"/>
   <property name="revision" value="0"/>
   <property name="company.name" value="Codai, LLC"/>
-  
-  <!-- Controls NGen Use -->
-  <!-- Cannot NGen on the Code Better TeamCity server so we default to false when we are on TeamCity.
-       This can be overriden with -D:useNgen=true in the TeamCity configuration -->
-  <property name="useNgen" value="${not property::exists('build.number')}"/>
 
   <!-- Set this to false to allow sql lite tests requiring a in file SQLLite database to run.
        Any test that needs to close the connection during the test has to go to a file since
        closing the connection to an in memory database causes the schema to be lost.
        When this is true, all the tests of UnitOfWork and Transaction are off.  -->
   <property name="excludeSqlLiteFileTests" value="true"/>
-
-  <include buildfile="${tools.dir}\nant\includes\ngenPostSharp.include"/>
   
   <!-- *********************************************************
        The build 
@@ -74,7 +67,6 @@
   </target>
 
   <target name="build" description="Compile the application.">
-    <call target="ngenPostSharp" if="${useNgen}"/> 
     <msbuild project="SharpArchContrib.sln" target="Rebuild">
       <property name="Configuration" value="${configuration}"/>
     </msbuild>
