@@ -14,7 +14,7 @@ namespace SharpArchContrib.Castle.CastleWindsor {
         public static void AddComponentsTo(IWindsorContainer container, Type transactionManagerType) {
             ParameterCheck.ParameterRequired(container, "container");
 
-            if (!container.Kernel.HasComponent("LogFacility")) {
+            if (!container.Kernel.HasComponent("LogInterceptor")) {
                 Core.CastleWindsor.ComponentRegistrar.AddComponentsTo(container);
                 Data.CastleWindsor.ComponentRegistrar.AddComponentsTo(container, transactionManagerType);
                 container.AddFacility("LogFacility", new LogFacility());

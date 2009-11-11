@@ -1,4 +1,5 @@
 using SharpArchContrib.Castle.Logging;
+using System;
 
 namespace Tests.SharpArchContrib.Castle.Logging {
     public class LogTestClass : ILogTestClass {
@@ -16,6 +17,11 @@ namespace Tests.SharpArchContrib.Castle.Logging {
 
         public virtual int NotLogged(string name, int val) {
             return val;
+        }
+
+        [Log]
+        public virtual void ThrowException(){
+            throw new Exception("Boom");
         }
 
         #endregion

@@ -43,6 +43,7 @@ namespace SharpArchContrib.Castle.Logging {
                 }
                 catch (Exception err) {
                     methodLogger.LogException(methodInfo, err, logAttributeSettings.ExceptionLevel);
+                    throw;
                 }
                 methodLogger.LogSuccess(methodInfo, invocation.ReturnValue, logAttributeSettings.SuccessLevel);
             }

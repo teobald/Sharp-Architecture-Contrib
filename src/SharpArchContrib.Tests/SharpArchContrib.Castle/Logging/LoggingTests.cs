@@ -6,6 +6,7 @@ using NUnit.Framework;
 using SharpArch.Testing.NUnit;
 using SharpArchContrib.Castle.Logging;
 using SharpArchContrib.Core.Logging;
+using System;
 
 namespace Tests.SharpArchContrib.Castle.Logging {
     [TestFixture]
@@ -15,6 +16,7 @@ namespace Tests.SharpArchContrib.Castle.Logging {
             testClass.Method("Tom", 1);
             testClass.VirtualMethod("Bill", 2);
             testClass.NotLogged("Philly", 3);
+            Assert.Throws<Exception>(() => testClass.ThrowException());
         }
 
         private void TryLoggingViaProxy() {
