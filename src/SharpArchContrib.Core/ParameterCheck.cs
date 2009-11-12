@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using SharpArch.Core;
 
 namespace SharpArchContrib.Core {
@@ -20,6 +21,25 @@ namespace SharpArchContrib.Core {
             ParameterNameRequired(parameterName);
 
             Check.Require(!string.IsNullOrEmpty(parameter), GetParameterRequiredErrorMessage(parameterName));
+        }
+
+        public static void DictionaryContainsKey(IDictionary<string,object> dictionary, string dictionaryName, string key) {
+            ParameterRequired(dictionary, "dictionary");
+            StringRequiredAndNotEmpty(key, "key");
+            StringRequiredAndNotEmpty(dictionaryName, "dictionaryName");
+
+            Check.Require(dictionary.ContainsKey(key), string.Format("Dictionary parameter {0} must contain an entry with key value {1}",
+                dictionaryName, key));
+        }
+
+        public static void DictionaryContainsKey(IDictionary<string, string> dictionary, string dictionaryName, string key)
+        {
+            ParameterRequired(dictionary, "dictionary");
+            StringRequiredAndNotEmpty(key, "key");
+            StringRequiredAndNotEmpty(dictionaryName, "dictionaryName");
+
+            Check.Require(dictionary.ContainsKey(key), string.Format("Dictionary parameter {0} must contain an entry with key value {1}",
+                dictionaryName, key));
         }
     }
 }

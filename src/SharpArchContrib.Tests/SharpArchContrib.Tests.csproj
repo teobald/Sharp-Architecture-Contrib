@@ -155,6 +155,7 @@
     <Compile Include="NHibernateTests\TransactionTestProviderBase.cs" />
     <Compile Include="NHibernateTests\TransactionTests.cs" />
     <Compile Include="NHibernateTests\TransactionTestsBase.cs" />
+    <Compile Include="SharpArchContrib.Core\ParameterCheckTests.cs" />
     <Compile Include="SyntaxHelper.cs" />
     <Compile Include="TestCategories.cs" />
   </ItemGroup>
@@ -181,7 +182,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="SharpArchContrib.Core\" />
     <Folder Include="SharpArchContrib.Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
