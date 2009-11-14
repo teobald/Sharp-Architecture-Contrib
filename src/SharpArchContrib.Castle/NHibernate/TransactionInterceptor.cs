@@ -95,8 +95,16 @@ namespace SharpArchContrib.Castle.NHibernate {
                                                  object transactionState, Exception err) {
             string factoryKey = transactionAttributeSettings.FactoryKey;
             if (err == null) {
-                NHibernateSession.CurrentFor(factoryKey).Flush();
-                transactionState = transactionManager.CommitTransaction(factoryKey, transactionState);
+                try {
+                    NHibernateSession.CurrentFor(factoryKey).Flush();
+                    transactionState = transactionManager.CommitTransaction(factoryKey, transactionState);
+                }
+                catch (Exception) {
+                    transactionState = transactionManager.RollbackTransaction(factoryKey, transactionState);
+                    transactionState = transactionManager.PopTransaction(factoryKey, transactionState);
+                    throw;
+                }
+
             }
             else {
                 transactionState = transactionManager.RollbackTransaction(factoryKey, transactionState);

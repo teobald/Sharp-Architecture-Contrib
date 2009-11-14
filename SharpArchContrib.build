@@ -52,6 +52,7 @@
   <target name="clean" description="Clean up the build environment.">
     <echo message="======================================================="/>
     <echo message="configuration = ${configuration}"/>
+    <echo message="excludeSqlLiteFileTests = ${excludeSqlLiteFileTests}"/>
     <echo message="======================================================="/>
     <if test="${property::exists('teamcity.dotnet.nunitaddin')}">
       <copy todir="${nunit.dir}\addins">
