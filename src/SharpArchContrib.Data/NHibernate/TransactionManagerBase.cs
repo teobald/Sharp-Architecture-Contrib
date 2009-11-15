@@ -6,6 +6,7 @@ namespace SharpArchContrib.Data.NHibernate {
     [Serializable]
     public abstract class TransactionManagerBase : ITransactionManager {
         private static readonly ILog logger = LogManager.GetLogger(typeof(TransactionManagerBase));
+        [ThreadStatic]
         private static int transactionDepth;
 
         #region ITransactionManager Members
