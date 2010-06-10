@@ -244,6 +244,7 @@ namespace SharpArchContrib.Data.NHibernate {
     }
 
     public abstract class BaseLock : IDisposable {
+        [CLSCompliant(false)]
         protected ReaderWriterLockSlim _Locks;
 
 

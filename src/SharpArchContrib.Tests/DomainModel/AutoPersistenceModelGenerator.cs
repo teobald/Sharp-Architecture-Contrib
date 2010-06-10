@@ -12,6 +12,7 @@ namespace Tests.DomainModel {
     public class AutoPersistenceModelGenerator : IAutoPersistenceModelGenerator {
         #region IAutoPersistenceModelGenerator Members
 
+        [CLSCompliant(false)]
         public AutoPersistenceModel Generate() {
             var mappings = new AutoPersistenceModel();
             mappings.AddEntityAssembly(typeof(TestEntity).Assembly).Where(GetAutoMappingFilter);
