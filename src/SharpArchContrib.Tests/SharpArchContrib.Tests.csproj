@@ -52,7 +52,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\CommonServiceLocator.WindsorAdapter.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -92,7 +92,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="SharpArch, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="SharpArch, Version=1.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\SharpArch.dll</HintPath>
     </Reference>
