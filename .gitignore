@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #ignore outputs of project
 BuildOutput*/
 CommonAssemblyInfo.cs
@@ -29,3 +30,22 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+=======
+obj
+bin
+debug
+_Resharper.*
+_ReSharper.*
+*.csproj.user
+*.resharper.user
+*.ReSharper.user
+*.resharper
+*.ReSharper
+*.suo
+*.cache
+*~
+*.swp
+*.dbproj.user
+*.dbmdl
+error-*.xml
+>>>>>>> 9d09b9d1896b349a88245e823ee3ff7e6dd9d74a
