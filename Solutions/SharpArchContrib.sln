@@ -1,18 +1,18 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Core", "SharpArchContrib.Core\SharpArchContrib.Core.csproj", "{EB8DABCF-B11F-49D4-B858-67C37AA204DB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Data", "SharpArchContrib.Data\SharpArchContrib.Data.csproj", "{E33E2468-B055-4F3D-83DB-8F991F600A47}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Tests", "SharpArchContrib.Tests\SharpArchContrib.Tests.csproj", "{CBFD99A2-2C17-431B-B507-599351F9F713}"
-EndProject
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34D42016-342F-40AE-BAC8-54D6AA8A1020}"
 	ProjectSection(SolutionItems) = preProject
 		..\license.txt = ..\license.txt
 		..\readme.txt = ..\readme.txt
 		..\VersionHistory.txt = ..\VersionHistory.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Core", "SharpArchContrib.Core\SharpArchContrib.Core.csproj", "{EB8DABCF-B11F-49D4-B858-67C37AA204DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Data", "SharpArchContrib.Data\SharpArchContrib.Data.csproj", "{E33E2468-B055-4F3D-83DB-8F991F600A47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Tests", "SharpArchContrib.Tests\SharpArchContrib.Tests.csproj", "{CBFD99A2-2C17-431B-B507-599351F9F713}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Castle", "SharpArchContrib.Castle\SharpArchContrib.Castle.csproj", "{557E1790-FBDD-4FDE-86B2-93E2AD0E9E24}"
 EndProject
