@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="PackageArtefacts" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <SolutionName>SharpArchContrib</SolutionName>
+    <SolutionsPath>$(MSBuildProjectDirectory)\..\Solutions</SolutionsPath>
+    <BuildPath>$(MSBuildProjectDirectory)\..\BuildSystem</BuildPath>
+    <SolutionRoot>$(BuildPath)\..\..</SolutionRoot>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageFiles Include="$(SolutionsPath)\**\*.*"
+                       Exclude="$(SolutionsPath)\**\bin\**;
+                                  $(SolutionsPath)\**\Logs\**;
+                                  $(SolutionsPath)\**\obj\**;">
+      <PackageName>$(DropsPath)\$(GlobalBuildVersionNumber)\$(PackageName).Source.v$(GlobalBuildVersionNumber).zip</PackageName>
+      <WorkingDirectory>$(SolutionsPath)</WorkingDirectory>
+    </PackageFiles>
+  </ItemGroup>
+
+  <Import Project="$(BuildPath)\BuildSystem.proj" />
+
+  <Target Name="Build"
+        DependsOnTargets="CleanSolution;
+                            UpdateAssemblyVersion;
+                            BuildSolutions" />
+
+  <Target Name="PackageArtefacts"
+          DependsOnTargets="Build;
+                            Package;
+                            BuildSuccess" />
+
+</Project>
