@@ -1,29 +1,57 @@
-using System;
-using SharpArchContrib.Core.Logging;
+namespace SharpArchContrib.Castle.Logging
+{
+    using System;
 
-namespace SharpArchContrib.Castle.Logging {
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false,
+    using SharpArchContrib.Core.Logging;
+
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, 
         Inherited = false)]
-    public class LogAttribute : Attribute {
-        public LogAttribute() {
-            Settings = new LogAttributeSettings(LoggingLevel.Debug, LoggingLevel.Debug, LoggingLevel.Error);
+    public class LogAttribute : Attribute
+    {
+        public LogAttribute()
+        {
+            this.Settings = new LogAttributeSettings(LoggingLevel.Debug, LoggingLevel.Debug, LoggingLevel.Error);
         }
 
-        public LoggingLevel EntryLevel {
-            get { return Settings.EntryLevel; }
-            set { Settings.EntryLevel = value; }
+        public LoggingLevel EntryLevel
+        {
+            get
+            {
+                return this.Settings.EntryLevel;
+            }
+
+            set
+            {
+                this.Settings.EntryLevel = value;
+            }
         }
 
-        public LoggingLevel SuccessLevel {
-            get { return Settings.SuccessLevel; }
-            set { Settings.SuccessLevel = value; }
-        }
+        public LoggingLevel ExceptionLevel
+        {
+            get
+            {
+                return this.Settings.ExceptionLevel;
+            }
 
-        public LoggingLevel ExceptionLevel {
-            get { return Settings.ExceptionLevel; }
-            set { Settings.ExceptionLevel = value; }
+            set
+            {
+                this.Settings.ExceptionLevel = value;
+            }
         }
 
         public LogAttributeSettings Settings { get; set; }
+
+        public LoggingLevel SuccessLevel
+        {
+            get
+            {
+                return this.Settings.SuccessLevel;
+            }
+
+            set
+            {
+                this.Settings.SuccessLevel = value;
+            }
+        }
     }
 }

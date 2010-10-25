@@ -1,58 +1,73 @@
-using SharpArchContrib.Castle.NHibernate;
-using SharpArchContrib.Data.NHibernate;
-using Tests.NHibernateTests;
+namespace Tests.SharpArchContrib.Castle.NHibernate
+{
+    using global::SharpArchContrib.Castle.NHibernate;
+    using global::SharpArchContrib.Data.NHibernate;
 
-namespace Tests.SharpArchContrib.Castle.NHibernate {
-    public class SystemUnitOfWorkTestProvider : TransactionTestProviderBase, ITransactionTestProvider {
-        protected override string TestEntityName {
-            get { return "UnitOfWorkTest"; }
+    using Tests.NHibernateTests;
+
+    public class SystemUnitOfWorkTestProvider : TransactionTestProviderBase, ITransactionTestProvider
+    {
+        public string Name
+        {
+            get
+            {
+                return "Castle SystemUnitOfWorkTestProvider";
+            }
         }
 
-        #region ITransactionTestProvider Members
-
-        public string Name {
-            get { return "Castle SystemUnitOfWorkTestProvider"; }
+        protected override string TestEntityName
+        {
+            get
+            {
+                return "UnitOfWorkTest";
+            }
         }
 
         [UnitOfWork]
-        public override void DoCommit(string testEntityName) {
+        public override void Commit(string testEntityName)
+        {
+            base.Commit(testEntityName);
+        }
+
+        [UnitOfWork]
+        public override void DoCommit(string testEntityName)
+        {
             base.DoCommit(testEntityName);
         }
 
         [Transaction(IsExceptionSilent = true)]
-        public override void DoCommitSilenceException(string testEntityName) {
+        public override void DoCommitSilenceException(string testEntityName)
+        {
             base.DoCommitSilenceException(testEntityName);
         }
 
         [UnitOfWork]
-        public override void DoRollback() {
-            base.DoRollback();
-        }
-
-        [UnitOfWork]
-        public override void DoNestedCommit() {
+        public override void DoNestedCommit()
+        {
             base.DoNestedCommit();
         }
 
         [UnitOfWork]
-        public override void DoNestedForceRollback() {
+        public override void DoNestedForceRollback()
+        {
             base.DoNestedInnerForceRollback();
         }
 
         [UnitOfWork]
-        public override void DoNestedInnerForceRollback() {
+        public override void DoNestedInnerForceRollback()
+        {
             base.DoNestedInnerForceRollback();
         }
 
-        public void InitTransactionManager() {
+        [UnitOfWork]
+        public override void DoRollback()
+        {
+            base.DoRollback();
+        }
+
+        public void InitTransactionManager()
+        {
             ServiceLocatorInitializer.Init(typeof(SystemTransactionManager));
-        }
-
-        #endregion
-
-        [UnitOfWork]
-        public override void Commit(string testEntityName) {
-            base.Commit(testEntityName);
         }
     }
 }

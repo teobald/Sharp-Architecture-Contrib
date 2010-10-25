@@ -1,16 +1,18 @@
-﻿using System;
-using FluentNHibernate.Conventions;
-using FluentNHibernate.Conventions.Instances;
+﻿namespace Tests.DomainModel.Conventions
+{
+    using System;
 
-namespace Tests.DomainModel.Conventions {
-    public class TableNameConvention : IClassConvention {
-        #region IClassConvention Members
+    using FluentNHibernate.Conventions;
+    using FluentNHibernate.Conventions.Instances;
 
+    using Inflector.Net;
+
+    public class TableNameConvention : IClassConvention
+    {
         [CLSCompliant(false)]
-        public void Apply(IClassInstance instance) {
-            instance.Table(Inflector.Net.Inflector.Pluralize(instance.EntityType.Name));
+        public void Apply(IClassInstance instance)
+        {
+            instance.Table(Inflector.Pluralize(instance.EntityType.Name));
         }
-
-        #endregion
     }
 }

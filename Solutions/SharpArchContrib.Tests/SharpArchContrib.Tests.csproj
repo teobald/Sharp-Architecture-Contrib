@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="HibernateFile.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>

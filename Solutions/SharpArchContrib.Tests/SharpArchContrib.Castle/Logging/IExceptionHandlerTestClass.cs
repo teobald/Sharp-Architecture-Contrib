@@ -1,10 +1,17 @@
-﻿namespace Tests.SharpArchContrib.Castle.Logging {
-    public interface IExceptionHandlerTestClass {
-        void ThrowException();
-        float ThrowExceptionSilentWithReturn();
-        void ThrowExceptionSilent();
-        float ThrowExceptionSilentWithReturnWithLogAttribute();
+﻿namespace Tests.SharpArchContrib.Castle.Logging
+{
+    public interface IExceptionHandlerTestClass
+    {
         float ThrowBaseExceptionNoCatch();
+
+        void ThrowException();
+
+        void ThrowExceptionSilent();
+
+        float ThrowExceptionSilentWithReturn();
+
+        float ThrowExceptionSilentWithReturnWithLogAttribute();
+
         float ThrowNotImplementedExceptionCatch();
     }
 }

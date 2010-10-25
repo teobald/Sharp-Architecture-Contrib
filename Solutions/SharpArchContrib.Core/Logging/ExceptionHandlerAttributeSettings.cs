@@ -1,15 +1,20 @@
-﻿using System;
+﻿namespace SharpArchContrib.Core.Logging
+{
+    using System;
 
-namespace SharpArchContrib.Core.Logging {
     [Serializable]
-    public class ExceptionHandlerAttributeSettings {
-        public ExceptionHandlerAttributeSettings() {
-            IsSilent = false;
-            ReturnValue = null;
+    public class ExceptionHandlerAttributeSettings
+    {
+        public ExceptionHandlerAttributeSettings()
+        {
+            this.IsSilent = false;
+            this.ReturnValue = null;
         }
 
-        public bool IsSilent { get; set; }
-        public object ReturnValue { get; set; }
         public Type ExceptionType { get; set; }
+
+        public bool IsSilent { get; set; }
+
+        public object ReturnValue { get; set; }
     }
 }

@@ -1,7 +1,9 @@
-﻿using System;
+﻿namespace SharpArchContrib.Core.Logging
+{
+    using System;
 
-namespace SharpArchContrib.Core.Logging {
-    public interface IExceptionLogger {
+    public interface IExceptionLogger
+    {
         void LogException(Exception err, bool isSilent, Type throwingType);
     }
 }

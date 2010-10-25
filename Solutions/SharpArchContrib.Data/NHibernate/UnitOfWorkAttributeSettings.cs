@@ -1,10 +1,13 @@
-﻿using System;
+﻿namespace SharpArchContrib.Data.NHibernate
+{
+    using System;
 
-namespace SharpArchContrib.Data.NHibernate {
     [Serializable]
-    public class UnitOfWorkAttributeSettings : TransactionAttributeSettings {
-        public UnitOfWorkAttributeSettings() {
-            CloseSessions = true;
+    public class UnitOfWorkAttributeSettings : TransactionAttributeSettings
+    {
+        public UnitOfWorkAttributeSettings()
+        {
+            this.CloseSessions = true;
         }
 
         public bool CloseSessions { get; set; }

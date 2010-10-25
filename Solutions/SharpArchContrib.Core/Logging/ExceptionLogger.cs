@@ -1,19 +1,21 @@
-﻿using System;
-using log4net;
+﻿namespace SharpArchContrib.Core.Logging
+{
+    using System;
 
-namespace SharpArchContrib.Core.Logging {
-    public class ExceptionLogger : IExceptionLogger {
-        #region IExceptionLogger Members
+    using log4net;
 
-        public void LogException(Exception err, bool isSilent, Type throwingType) {
-            ILog logger = LogManager.GetLogger(throwingType);
+    public class ExceptionLogger : IExceptionLogger
+    {
+        public void LogException(Exception err, bool isSilent, Type throwingType)
+        {
+            var logger = LogManager.GetLogger(throwingType);
             string message = null;
-            if (isSilent) {
+            if (isSilent)
+            {
                 message = "[SILENT]";
             }
+
             logger.Log(LoggingLevel.Error, message, err);
         }
-
-        #endregion
     }
 }

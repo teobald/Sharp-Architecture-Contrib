@@ -1,16 +1,16 @@
-﻿using System;
-using FluentNHibernate.Conventions;
-using FluentNHibernate.Conventions.Instances;
+﻿namespace Tests.DomainModel.Conventions
+{
+    using System;
 
-namespace Tests.DomainModel.Conventions {
-    public class HasManyConvention : IHasManyConvention {
-        #region IHasManyConvention Members
+    using FluentNHibernate.Conventions;
+    using FluentNHibernate.Conventions.Instances;
 
+    public class HasManyConvention : IHasManyConvention
+    {
         [CLSCompliant(false)]
-        public void Apply(IOneToManyCollectionInstance instance) {
+        public void Apply(IOneToManyCollectionInstance instance)
+        {
             instance.Key.Column(instance.EntityType.Name + "Id");
         }
-
-        #endregion
     }
 }

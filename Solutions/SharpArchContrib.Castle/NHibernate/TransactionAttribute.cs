@@ -1,48 +1,81 @@
-﻿using System;
-using SharpArch.Core;
-using SharpArchContrib.Data.NHibernate;
+﻿namespace SharpArchContrib.Castle.NHibernate
+{
+    using System;
 
-namespace SharpArchContrib.Castle.NHibernate {
+    using SharpArch.Core;
+
+    using SharpArchContrib.Data.NHibernate;
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
-    public class TransactionAttribute : Attribute, ITransactionAttributeSettings {
+    public class TransactionAttribute : Attribute, ITransactionAttributeSettings
+    {
         private TransactionAttributeSettings settings;
 
-        public TransactionAttribute() {
-            settings = new TransactionAttributeSettings();
+        public TransactionAttribute()
+        {
+            this.settings = new TransactionAttributeSettings();
         }
 
-        public string FactoryKey {
-            get { return Settings.FactoryKey; }
-            set {
-                if (value == null) {
+        public string FactoryKey
+        {
+            get
+            {
+                return this.Settings.FactoryKey;
+            }
+
+            set
+            {
+                if (value == null)
+                {
                     throw new PreconditionException("FactoryKey cannot be null");
                 }
-                Settings.FactoryKey = value;
+
+                this.Settings.FactoryKey = value;
             }
         }
 
-        public bool IsExceptionSilent {
-            get { return Settings.IsExceptionSilent; }
-            set { Settings.IsExceptionSilent = value; }
+        public bool IsExceptionSilent
+        {
+            get
+            {
+                return this.Settings.IsExceptionSilent;
+            }
+
+            set
+            {
+                this.Settings.IsExceptionSilent = value;
+            }
         }
 
-        public object ReturnValue {
-            get { return Settings.ReturnValue; }
-            set { Settings.ReturnValue = value; }
+        public object ReturnValue
+        {
+            get
+            {
+                return this.Settings.ReturnValue;
+            }
+
+            set
+            {
+                this.Settings.ReturnValue = value;
+            }
         }
 
-        #region ITransactionAttributeSettings Members
+        public TransactionAttributeSettings Settings
+        {
+            get
+            {
+                return this.settings;
+            }
 
-        public TransactionAttributeSettings Settings {
-            get { return settings; }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     throw new PreconditionException("Settings must not be null");
                 }
-                settings = value;
+
+                this.settings = value;
             }
         }
-
-        #endregion
     }
 }

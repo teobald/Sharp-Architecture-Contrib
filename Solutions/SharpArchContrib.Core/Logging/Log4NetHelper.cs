@@ -1,10 +1,36 @@
-﻿using System;
-using log4net;
+﻿namespace SharpArchContrib.Core.Logging
+{
+    using System;
 
-namespace SharpArchContrib.Core.Logging {
-    public static class Log4NetHelper {
-        public static void Log(this ILog logger, LoggingLevel level, string message) {
-            switch (level) {
+    using log4net;
+
+    public static class Log4NetHelper
+    {
+        public static bool IsEnabledFor(this ILog logger, LoggingLevel level)
+        {
+            switch (level)
+            {
+                case LoggingLevel.All:
+                    return true;
+                case LoggingLevel.Debug:
+                    return logger.IsDebugEnabled;
+                case LoggingLevel.Info:
+                    return logger.IsInfoEnabled;
+                case LoggingLevel.Warn:
+                    return logger.IsWarnEnabled;
+                case LoggingLevel.Error:
+                    return logger.IsErrorEnabled;
+                case LoggingLevel.Fatal:
+                    return logger.IsFatalEnabled;
+            }
+
+            return false;
+        }
+
+        public static void Log(this ILog logger, LoggingLevel level, string message)
+        {
+            switch (level)
+            {
                 case LoggingLevel.All:
                 case LoggingLevel.Debug:
                     logger.Debug(message);
@@ -24,69 +50,67 @@ namespace SharpArchContrib.Core.Logging {
             }
         }
 
-        public static void Log(this ILog logger, LoggingLevel level, string message, Exception err) {
-            switch (level) {
+        public static void Log(this ILog logger, LoggingLevel level, string message, Exception err)
+        {
+            switch (level)
+            {
                 case LoggingLevel.All:
                 case LoggingLevel.Debug:
-                    if (message == null) {
+                    if (message == null)
+                    {
                         logger.Debug(err);
                     }
-                    else {
+                    else
+                    {
                         logger.Debug(message, err);
                     }
+
                     break;
                 case LoggingLevel.Info:
-                    if (message == null) {
+                    if (message == null)
+                    {
                         logger.Info(err);
                     }
-                    else {
+                    else
+                    {
                         logger.Info(message, err);
                     }
+
                     break;
                 case LoggingLevel.Warn:
-                    if (message == null) {
+                    if (message == null)
+                    {
                         logger.Warn(err);
                     }
-                    else {
+                    else
+                    {
                         logger.Warn(message, err);
                     }
+
                     break;
                 case LoggingLevel.Error:
-                    if (message == null) {
+                    if (message == null)
+                    {
                         logger.Error(err);
                     }
-                    else {
+                    else
+                    {
                         logger.Error(message, err);
                     }
+
                     break;
                 case LoggingLevel.Fatal:
-                    if (message == null) {
+                    if (message == null)
+                    {
                         logger.Fatal(err);
                     }
-                    else {
+                    else
+                    {
                         logger.Fatal(message, err);
                     }
+
                     break;
             }
-        }
-
-        public static bool IsEnabledFor(this ILog logger, LoggingLevel level) {
-            switch (level) {
-                case LoggingLevel.All:
-                    return true;
-                case LoggingLevel.Debug:
-                    return logger.IsDebugEnabled;
-                case LoggingLevel.Info:
-                    return logger.IsInfoEnabled;
-                case LoggingLevel.Warn:
-                    return logger.IsWarnEnabled;
-                case LoggingLevel.Error:
-                    return logger.IsErrorEnabled;
-                case LoggingLevel.Fatal:
-                    return logger.IsFatalEnabled;
-            }
-
-            return false;
         }
     }
 }

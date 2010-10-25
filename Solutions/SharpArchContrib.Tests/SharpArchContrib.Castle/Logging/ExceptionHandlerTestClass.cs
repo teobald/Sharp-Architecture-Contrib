@@ -1,48 +1,47 @@
-﻿using System;
-using SharpArchContrib.Castle.Logging;
-using SharpArchContrib.Core.Logging;
+﻿namespace Tests.SharpArchContrib.Castle.Logging
+{
+    using System;
 
-namespace Tests.SharpArchContrib.Castle.Logging {
-    public class ExceptionHandlerTestClass : IExceptionHandlerTestClass {
-        #region IExceptionHandlerTestClass Members
+    using global::SharpArchContrib.Castle.Logging;
+    using global::SharpArchContrib.Core.Logging;
+
+    public class ExceptionHandlerTestClass : IExceptionHandlerTestClass
+    {
+        [ExceptionHandler(ExceptionType = typeof(NotImplementedException))]
+        public float ThrowBaseExceptionNoCatch()
+        {
+            throw new Exception();
+        }
 
         [ExceptionHandler]
-        public void ThrowException() {
+        public void ThrowException()
+        {
             throw new NotImplementedException();
         }
 
         [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
-        public float ThrowExceptionSilentWithReturn() {
+        public void ThrowExceptionSilent()
+        {
             throw new NotImplementedException();
-            return 7f;
         }
 
         [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
-        public void ThrowExceptionSilent() {
+        public float ThrowExceptionSilentWithReturn()
+        {
             throw new NotImplementedException();
         }
 
         [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
         [Log(ExceptionLevel = LoggingLevel.Error)]
-        public float ThrowExceptionSilentWithReturnWithLogAttribute() {
-            throw new NotImplementedException();
-            return 7f;
-        }
-
-        [ExceptionHandler(ExceptionType = typeof(NotImplementedException))]
-        public float ThrowBaseExceptionNoCatch()
+        public float ThrowExceptionSilentWithReturnWithLogAttribute()
         {
-            throw new Exception();
-            return 7f;
+            throw new NotImplementedException();
         }
 
-        [ExceptionHandler(IsSilent=true, ExceptionType = typeof(NotImplementedException), ReturnValue = 6f)]
+        [ExceptionHandler(IsSilent = true, ExceptionType = typeof(NotImplementedException), ReturnValue = 6f)]
         public float ThrowNotImplementedExceptionCatch()
         {
             throw new NotImplementedException();
-            return 7f;
         }
-
-        #endregion
     }
 }

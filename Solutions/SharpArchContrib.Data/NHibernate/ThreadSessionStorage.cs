@@ -1,58 +1,70 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading;
-using NHibernate;
-using SharpArch.Data.NHibernate;
+﻿namespace SharpArchContrib.Data.NHibernate
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Threading;
 
-namespace SharpArchContrib.Data.NHibernate {
-    public class ThreadSessionStorage : IUnitOfWorkSessionStorage {
+    using global::NHibernate;
+
+    using SharpArch.Data.NHibernate;
+
+    public class ThreadSessionStorage : IUnitOfWorkSessionStorage
+    {
         private readonly ThreadSafeDictionary<string, SimpleSessionStorage> perThreadSessionStorage =
             new ThreadSafeDictionary<string, SimpleSessionStorage>();
 
-        #region IUnitOfWorkSessionStorage Members
-
-        public IEnumerable<ISession> GetAllSessions() {
-            return GetSimpleSessionStorageForThread().GetAllSessions();
+        public IEnumerable<ISession> GetAllSessions()
+        {
+            return this.GetSimpleSessionStorageForThread().GetAllSessions();
         }
 
-        public ISession GetSessionForKey(string factoryKey) {
-            return GetSimpleSessionStorageForThread().GetSessionForKey(factoryKey);
+        public ISession GetSessionForKey(string factoryKey)
+        {
+            return this.GetSimpleSessionStorageForThread().GetSessionForKey(factoryKey);
         }
 
-        public void SetSessionForKey(string factoryKey, ISession session) {
-            GetSimpleSessionStorageForThread().SetSessionForKey(factoryKey, session);
+        public void SetSessionForKey(string factoryKey, ISession session)
+        {
+            this.GetSimpleSessionStorageForThread().SetSessionForKey(factoryKey, session);
         }
 
-        public void EndUnitOfWork(bool closeSessions) {
-            if (closeSessions) {
+        public void EndUnitOfWork(bool closeSessions)
+        {
+            if (closeSessions)
+            {
                 NHibernateSession.CloseAllSessions();
-                perThreadSessionStorage.Remove(GetCurrentThreadName());
+                this.perThreadSessionStorage.Remove(this.GetCurrentThreadName());
             }
-            else {
-                foreach (ISession session in GetAllSessions()) {
+            else
+            {
+                foreach (var session in this.GetAllSessions())
+                {
                     session.Clear();
                 }
             }
         }
 
-        #endregion
+        private string GetCurrentThreadName()
+        {
+            if (Thread.CurrentThread.Name == null)
+            {
+                Thread.CurrentThread.Name = Guid.NewGuid().ToString();
+            }
 
-        private SimpleSessionStorage GetSimpleSessionStorageForThread() {
-            string currentThreadName = GetCurrentThreadName();
+            return Thread.CurrentThread.Name;
+        }
+
+        private SimpleSessionStorage GetSimpleSessionStorageForThread()
+        {
+            var currentThreadName = this.GetCurrentThreadName();
             SimpleSessionStorage sessionStorage;
-            if (!perThreadSessionStorage.TryGetValue(currentThreadName, out sessionStorage)) {
+            if (!this.perThreadSessionStorage.TryGetValue(currentThreadName, out sessionStorage))
+            {
                 sessionStorage = new SimpleSessionStorage();
-                perThreadSessionStorage.Add(currentThreadName, sessionStorage);
+                this.perThreadSessionStorage.Add(currentThreadName, sessionStorage);
             }
 
             return sessionStorage;
-        }
-
-        private string GetCurrentThreadName() {
-            if (Thread.CurrentThread.Name == null) {
-                Thread.CurrentThread.Name = Guid.NewGuid().ToString();
-            }
-            return Thread.CurrentThread.Name;
         }
     }
 }

@@ -1,28 +1,55 @@
-using System;
-using SharpArchContrib.Core.Logging;
+namespace SharpArchContrib.Castle.Logging
+{
+    using System;
 
-namespace SharpArchContrib.Castle.Logging {
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false,
+    using SharpArchContrib.Core.Logging;
+
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, 
         Inherited = false)]
-    public class ExceptionHandlerAttribute : Attribute {
-        public ExceptionHandlerAttribute() {
-            Settings = new ExceptionHandlerAttributeSettings();
-        }
-
-        public bool IsSilent {
-            get { return Settings.IsSilent; }
-            set { Settings.IsSilent = value; }
-        }
-
-        public object ReturnValue {
-            get { return Settings.ReturnValue; }
-            set { Settings.ReturnValue = value; }
+    public class ExceptionHandlerAttribute : Attribute
+    {
+        public ExceptionHandlerAttribute()
+        {
+            this.Settings = new ExceptionHandlerAttributeSettings();
         }
 
         public Type ExceptionType
         {
-            get { return Settings.ExceptionType; }
-            set { Settings.ExceptionType = value; }
+            get
+            {
+                return this.Settings.ExceptionType;
+            }
+
+            set
+            {
+                this.Settings.ExceptionType = value;
+            }
+        }
+
+        public bool IsSilent
+        {
+            get
+            {
+                return this.Settings.IsSilent;
+            }
+
+            set
+            {
+                this.Settings.IsSilent = value;
+            }
+        }
+
+        public object ReturnValue
+        {
+            get
+            {
+                return this.Settings.ReturnValue;
+            }
+
+            set
+            {
+                this.Settings.ReturnValue = value;
+            }
         }
 
         public ExceptionHandlerAttributeSettings Settings { get; set; }

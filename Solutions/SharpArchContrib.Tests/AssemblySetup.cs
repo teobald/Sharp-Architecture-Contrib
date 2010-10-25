@@ -1,31 +1,42 @@
-﻿using System.IO;
-using log4net.Config;
-using NUnit.Framework;
-using Tests.Configuration;
+﻿namespace Tests
+{
+    using System.IO;
 
-namespace Tests {
+    using log4net.Config;
+
+    using NUnit.Framework;
+
+    using Tests.Configuration;
+
     [SetUpFixture]
-    public class AssemblySetup {
+    public class AssemblySetup
+    {
         [SetUp]
-        public void SetUp() {
-            InitializeDirectories();
-            InitializeLog4Net();
-            InitalizeServiceLocator();
+        public void SetUp()
+        {
+            this.InitializeDirectories();
+            this.InitializeLog4Net();
+            this.InitalizeServiceLocator();
         }
 
-        private void InitalizeServiceLocator() {
+        private void InitalizeServiceLocator()
+        {
             ServiceLocatorInitializer.Init();
         }
 
-        private void InitializeLog4Net() {
-            XmlConfigurator.Configure();
-        }
-
-        private void InitializeDirectories() {
-            if (Directory.Exists(Config.TestDataDir)) {
+        private void InitializeDirectories()
+        {
+            if (Directory.Exists(Config.TestDataDir))
+            {
                 Directory.Delete(Config.TestDataDir, true);
             }
+
             Directory.CreateDirectory(Config.TestDataDir);
+        }
+
+        private void InitializeLog4Net()
+        {
+            XmlConfigurator.Configure();
         }
     }
 }

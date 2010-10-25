@@ -1,17 +1,29 @@
-﻿using SharpArch.Core.PersistenceSupport;
-using Tests.DomainModel.Entities;
+﻿namespace Tests.NHibernateTests
+{
+    using SharpArch.Core.PersistenceSupport;
 
-namespace Tests.NHibernateTests {
-    public interface ITransactionTestProvider {
-        IRepository<TestEntity> TestEntityRepository { get; set; }
+    using Tests.DomainModel.Entities;
+
+    public interface ITransactionTestProvider
+    {
         string Name { get; }
-        void InitTransactionManager();
+
+        IRepository<TestEntity> TestEntityRepository { get; set; }
+
         void CheckNumberOfEntities(int numberOfEntities);
+
         void DoCommit(string testEntityName);
+
         void DoCommitSilenceException(string testEntityName);
-        void DoRollback();
+
         void DoNestedCommit();
+
         void DoNestedForceRollback();
+
         void DoNestedInnerForceRollback();
+
+        void DoRollback();
+
+        void InitTransactionManager();
     }
 }
