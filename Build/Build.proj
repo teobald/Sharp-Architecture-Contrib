@@ -18,6 +18,10 @@
     </PackageFiles>
   </ItemGroup>
 
+  <ItemGroup>
+    <AssembliesToTestWithNUnit Include="$(SolutionsPath)\SharpArchContrib.Tests\bin\Release\SharpArchContrib.Tests.dll" />
+  </ItemGroup>
+  
   <Import Project="$(BuildPath)\BuildSystem.proj" />
 
   <Target Name="Build"
@@ -25,8 +29,12 @@
                             UpdateAssemblyVersion;
                             BuildSolutions" />
 
-  <Target Name="PackageArtefacts"
+  <Target Name="RunTests"
           DependsOnTargets="Build;
+                            RunNUnitTests;" />
+  
+  <Target Name="PackageArtefacts"
+          DependsOnTargets="RunTests;
                             Package;
                             BuildSuccess" />
 

@@ -1,5 +1,6 @@
 #ignore outputs of project
 BuildOutput*/
+Drops/
 CommonAssemblyInfo.cs
 #ignore thumbnails created by windows
 Thumbs.db

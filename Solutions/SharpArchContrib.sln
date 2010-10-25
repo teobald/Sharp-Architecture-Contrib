@@ -16,6 +16,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Tests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Castle", "SharpArchContrib.Castle\SharpArchContrib.Castle.csproj", "{557E1790-FBDD-4FDE-86B2-93E2AD0E9E24}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{8A2474ED-405C-4CFC-83C9-E6BF014D466A}"
+	ProjectSection(SolutionItems) = preProject
+		..\Build\Build.cmd = ..\Build\Build.cmd
+		..\Build\Build.proj = ..\Build\Build.proj
+		..\Build\BuildAndPackage.cmd = ..\Build\BuildAndPackage.cmd
+		..\Build\BuildAndTest.cmd = ..\Build\BuildAndTest.cmd
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +38,8 @@ Global
 		{E33E2468-B055-4F3D-83DB-8F991F600A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E33E2468-B055-4F3D-83DB-8F991F600A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E33E2468-B055-4F3D-83DB-8F991F600A47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CBFD99A2-2C17-431B-B507-599351F9F713}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBFD99A2-2C17-431B-B507-599351F9F713}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBFD99A2-2C17-431B-B507-599351F9F713}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{CBFD99A2-2C17-431B-B507-599351F9F713}.Debug|Any CPU.Build.0 = Debug|x86
 		{CBFD99A2-2C17-431B-B507-599351F9F713}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBFD99A2-2C17-431B-B507-599351F9F713}.Release|Any CPU.Build.0 = Release|Any CPU
 		{557E1790-FBDD-4FDE-86B2-93E2AD0E9E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
