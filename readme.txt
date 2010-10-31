@@ -14,7 +14,7 @@ http://www.sharparchitecture.net/.
 URLs of Interest:
 
 - Downloads: http://github.com/sharparchitecture/Sharp-Architecture-Contrib/downloads
-- GitHub Repository: http://github.com/codai/Sharp-Architecture-Contrib
+- GitHub Repository: http://github.com/sharparchitecture/Sharp-Architecture-Contrib
 
 
 =============================================
