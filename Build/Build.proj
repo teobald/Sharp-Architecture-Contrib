@@ -6,7 +6,6 @@
     <SolutionsPath>$(MSBuildProjectDirectory)\..\Solutions</SolutionsPath>
     <BuildPath>$(MSBuildProjectDirectory)\..\BuildSystem</BuildPath>
     <SolutionRoot>$(BuildPath)\..\..</SolutionRoot>
-    <NUnitExcludeCategories>File DB Tests</NUnitExcludeCategories>	
   </PropertyGroup>
 
   <ItemGroup>
