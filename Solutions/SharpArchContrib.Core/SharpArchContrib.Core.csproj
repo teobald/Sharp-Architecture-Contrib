@@ -117,6 +117,7 @@
     <Compile Include="Logging\LogAttributeSettings.cs" />
     <Compile Include="Logging\LoggingLevel.cs" />
     <Compile Include="Logging\MethodLogger.cs" />
+    <Compile Include="LuceneSupport\ILuceneRepository.cs" />
     <Compile Include="ParameterCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
