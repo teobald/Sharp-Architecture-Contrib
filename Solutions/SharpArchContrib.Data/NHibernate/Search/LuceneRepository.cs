@@ -1,4 +1,4 @@
-﻿namespace SharpArchContrib.Castle.NHibernate.Search
+﻿namespace SharpArchContrib.Data.NHibernate.Search
 {
     using System;
     using System.Collections.Generic;

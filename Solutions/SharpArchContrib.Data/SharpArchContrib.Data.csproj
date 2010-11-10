@@ -84,6 +84,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Log4Net\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\..\ReferencedAssemblies\Lucene.Net\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Microsoft\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -91,6 +94,9 @@
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\NHibernate\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.Search">
+      <HintPath>..\..\ReferencedAssemblies\NHibernate\NHibernate.Search.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.Validator, Version=1.2.0.2001, Culture=neutral, PublicKeyToken=70154e18752585bd, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -128,6 +134,7 @@
     <Compile Include="NHibernate\ITransactionManager.cs" />
     <Compile Include="NHibernate\IUnitOfWorkSessionStorage.cs" />
     <Compile Include="NHibernate\NHibernateTransactionManager.cs" />
+    <Compile Include="NHibernate\Search\LuceneRepository.cs" />
     <Compile Include="NHibernate\ThreadSafeDictionary.cs" />
     <Compile Include="NHibernate\ThreadSessionStorage.cs" />
     <Compile Include="NHibernate\SystemTransactionManager.cs" />
