@@ -1,35 +1,31 @@
 ﻿namespace SharpArchContrib.Data.NHibernate.Search
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
 
-    using global::NHibernate;
     using global::NHibernate.Search;
     using global::NHibernate.Search.Cfg;
 
     using Lucene.Net.Analysis.Standard;
     using Lucene.Net.Index;
-    using Lucene.Net.QueryParsers;
-    using Lucene.Net.Search;
     using Lucene.Net.Store;
 
+    using SharpArch.Core.PersistenceSupport;
     using SharpArch.Data.NHibernate;
 
-    using SharpArchContrib.Core.LuceneSupport;
-
-    public class LuceneRepository<T> : LuceneRepositoryWithTypeId<T, int>
+    public class IndexBuilder<T> : IIndexBuilder<T>
     {
-    }
+        private readonly IRepositoryWithTypedId<T, int> repository;
 
+        public IndexBuilder(IRepositoryWithTypedId<T, int> repository)
+        {
+            this.repository = repository;
+        }
 
-    public class LuceneRepositoryWithTypeId<T, IdT> : RepositoryWithTypedId<T, IdT>, ILuceneRepositoryWithTypedId<T, IdT>
-    {
         public virtual void BuildSearchIndex()
         {
             FSDirectory entityDirectory = null;
             IndexWriter writer = null;
-
             var entityType = typeof(T);
 
             var indexDirectory = new DirectoryInfo(GetIndexDirectory());
@@ -57,22 +53,12 @@
                 }
             }
 
-            IFullTextSession fullTextSession = Search.CreateFullTextSession(this.Session);
-            foreach (var instance in Session.CreateCriteria(typeof(T)).List<T>())
+            IFullTextSession fullTextSession = Search.CreateFullTextSession(NHibernateSession.Current);
+
+            foreach (var instance in this.repository.GetAll())
             {
                 fullTextSession.Index(instance);
             }
-        }
-
-        public IList<T> Query(string searchQuery)
-        {
-            var parser = new MultiFieldQueryParser(new[] { "Query" }, new StandardAnalyzer());
-            Query luceneQuery = parser.Parse(searchQuery);
-            IFullTextSession session = Search.CreateFullTextSession(this.Session);
-            IQuery fullTextQuery = session.CreateFullTextQuery(luceneQuery, new[] { typeof(T) });
-            IList<T> results = fullTextQuery.List<T>();
-
-            return results;
         }
 
         private static string GetIndexDirectory()

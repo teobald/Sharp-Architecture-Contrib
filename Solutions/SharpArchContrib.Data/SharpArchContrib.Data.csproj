@@ -134,7 +134,8 @@
     <Compile Include="NHibernate\ITransactionManager.cs" />
     <Compile Include="NHibernate\IUnitOfWorkSessionStorage.cs" />
     <Compile Include="NHibernate\NHibernateTransactionManager.cs" />
-    <Compile Include="NHibernate\Search\LuceneRepository.cs" />
+    <Compile Include="NHibernate\Search\IndexBuilder.cs" />
+    <Compile Include="NHibernate\LuceneExtensions.cs" />
     <Compile Include="NHibernate\ThreadSafeDictionary.cs" />
     <Compile Include="NHibernate\ThreadSessionStorage.cs" />
     <Compile Include="NHibernate\SystemTransactionManager.cs" />
