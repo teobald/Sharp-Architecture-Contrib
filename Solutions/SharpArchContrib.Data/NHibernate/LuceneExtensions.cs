@@ -16,7 +16,7 @@
 
     public static class LuceneExtensions
     {
-        public static IList<T> Search<T, TId>(this IRepositoryWithTypedId<T, TId> repositoryWithTypedId, string searchQuery) where T : ISearcheable
+        public static IList<T> Search<T, TId>(this IRepositoryWithTypedId<T, TId> repositoryWithTypedId, string searchQuery) where T : ISearchable
         {
             var parser = new MultiFieldQueryParser(new[] { "Query" }, new StandardAnalyzer());
             Query luceneQuery = parser.Parse(searchQuery);

@@ -1,4 +1,6 @@
 ﻿namespace SharpArchContrib.Core.Search
 {
-    public interface ISearcheable { }
+    public interface ISearchable
+    {
+    }
 }

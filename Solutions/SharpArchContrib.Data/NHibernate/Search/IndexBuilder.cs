@@ -29,15 +29,15 @@
             var entityType = typeof(T);
 
             var indexDirectory = new DirectoryInfo(GetIndexDirectory());
-
-            if (indexDirectory.Exists)
+            var entityIndexDirectory = new DirectoryInfo(Path.Combine(indexDirectory.FullName, entityType.Name));
+            if (entityIndexDirectory.Exists)
             {
-                indexDirectory.Delete(true);
+                entityIndexDirectory.Delete(true);
             }
 
             try
             {
-                entityDirectory = FSDirectory.GetDirectory(Path.Combine(indexDirectory.FullName, entityType.Name), true);
+                entityDirectory = FSDirectory.GetDirectory(entityIndexDirectory.FullName, true);
                 writer = new IndexWriter(entityDirectory, new StandardAnalyzer(), true);
             }
             finally
@@ -54,7 +54,6 @@
             }
 
             IFullTextSession fullTextSession = Search.CreateFullTextSession(NHibernateSession.Current);
-
             foreach (var instance in this.repository.GetAll())
             {
                 fullTextSession.Index(instance);
