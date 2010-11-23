@@ -155,20 +155,30 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.SQLite, processorArchitecture=AMD64" Condition="$(PROCESSOR_ARCHITEW6432) == 'AMD64'">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferencedAssemblies\SqlLite\x64\System.Data.SQLite.DLL</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite, processorArchitecture=x86" Condition="$(PROCESSOR_ARCHITEW6432) == 'x86'">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ReferencedAssemblies\SqlLite\x64\System.Data.SQLite.DLL</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
+  <Choose>
+	<When Condition="$(PROCESSOR_ARCHITEW6432) == 'AMD64'">
+		<ItemGroup>
+			<Reference Include="System.Data.SQLite, processorArchitecture=AMD64" Condition="$(PROCESSOR_ARCHITEW6432) == 'AMD64'">
+			  <SpecificVersion>False</SpecificVersion>
+			  <HintPath>..\..\ReferencedAssemblies\SqlLite\x64\System.Data.SQLite.DLL</HintPath>
+			</Reference>
+		</ItemGroup>
+	</When>
+	<Otherwise>
+		<ItemGroup>
+			<Reference Include="System.Data.SQLite, processorArchitecture=x86" Condition="$(PROCESSOR_ARCHITEW6432) == 'x86'">
+			  <SpecificVersion>False</SpecificVersion>
+			  <HintPath>..\..\ReferencedAssemblies\SqlLite\System.Data.SQLite.DLL</HintPath>
+			</Reference>
+		</ItemGroup>
+	</Otherwise>
+  </Choose>
   <ItemGroup>
     <Compile Include="..\..\Common\AssemblyVersion.cs">
       <Link>Properties\AssemblyVersion.cs</Link>
