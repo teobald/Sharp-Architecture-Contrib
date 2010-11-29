@@ -22,6 +22,11 @@
     <AssembliesToTestWithNUnit Include="$(SolutionsPath)\SharpArchContrib.Tests\bin\Release\SharpArchContrib.Tests.dll" />
   </ItemGroup>
   
+  <PropertyGroup>
+    <RunMSpecTests>True</RunMSpecTests>
+    <MSpecSpecificationAssemblies>"$(MSBuildProjectDirectory)\..\Solutions\SharpArchContrib.Specifications\Bin\Release\SharpArchContrib.Specifications.dll"</MSpecSpecificationAssemblies>
+  </PropertyGroup>
+
   <Import Project="$(BuildPath)\BuildSystem.proj" />
 
   <Target Name="Build"
@@ -32,6 +37,10 @@
   <Target Name="RunTests"
           DependsOnTargets="Build;
                             RunNUnitTests;" />
+							
+  <Target Name="RunSpecs"
+      DependsOnTargets="Build;
+                        RunMSpecSpecifications;" />
   
   <Target Name="PackageArtefacts"
           DependsOnTargets="RunTests;
