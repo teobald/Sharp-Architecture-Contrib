@@ -4,7 +4,7 @@ namespace SharpArchContrib.Castle
     using System.Collections.Generic;
 
     using global::Castle.Core;
-    using global::Castle.Core.Interceptor;
+    using global::Castle.DynamicProxy;
     using global::Castle.MicroKernel;
     using global::Castle.MicroKernel.Facilities;
 

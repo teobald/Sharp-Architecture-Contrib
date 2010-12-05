@@ -2,7 +2,7 @@ namespace SharpArchContrib.Castle.NHibernate
 {
     using System;
 
-    using global::Castle.Core.Interceptor;
+    using global::Castle.DynamicProxy;
 
     using SharpArch.Data.NHibernate;
 

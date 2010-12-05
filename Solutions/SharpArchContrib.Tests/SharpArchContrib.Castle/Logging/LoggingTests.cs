@@ -3,7 +3,6 @@
     using System;
     using System.IO;
 
-    using global::Castle.Core.Interceptor;
     using global::Castle.DynamicProxy;
 
     using Microsoft.Practices.ServiceLocation;
