@@ -2,7 +2,7 @@
 <!--EXTERNAL_PROPERTIES: build.number-->
 <project name="SharpArchContrib" default="dist">
   <property name="project.dir" value="${project::get-base-directory()}" />
-  <property name="version" value="0.1.0.0"/>
+  <property name="version" value="0.4.0.0"/>
   <property name="configuration" value="Release"/>
   <property name="versionInfo.name" value="CommonAssemblyInfo.cs"/>
   <!-- Test -->
@@ -19,7 +19,7 @@
 
   
   <!-- Version Info -->
-  <property name="appVersion" value="0.3.0"/>
+  <property name="appVersion" value="0.4.0"/>
   <property name="revision" value="0"/>
   <property name="company.name" value="Codai, LLC"/>
 

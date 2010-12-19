@@ -13,9 +13,9 @@ http://code.google.com/p/sharp-architecture/.
 
 URLs of Interest:
 
-- Downloads: http://github.com/codai/Sharp-Architecture-Contrib/downloads
-- GitHub Repository: http://github.com/codai/Sharp-Architecture-Contrib
-- Downloads: http://github.com/codai/Sharp-Architecture-Contrib/downloads
+- Downloads: http://github.com/sharparchitecture/Sharp-Architecture-Contrib/downloads
+- GitHub Repository: http://github.com/sharparchitecture/Sharp-Architecture-Contrib
+- Downloads: http://github.com/sharparchitecture/Sharp-Architecture-Contrib/downloads
 
 
 =============================================

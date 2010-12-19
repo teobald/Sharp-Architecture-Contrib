@@ -13,8 +13,8 @@ using System.Runtime.InteropServices;
 
 [assembly: ComVisibleAttribute(false)]
 [assembly: AssemblyCultureAttribute("")]
-[assembly: AssemblyVersionAttribute("0.3.0")]
-[assembly: AssemblyFileVersionAttribute("0.3.0.0")]
+[assembly: AssemblyVersionAttribute("0.4.0")]
+[assembly: AssemblyFileVersionAttribute("0.4.0.0")]
 [assembly: AssemblyCopyrightAttribute("Copyright © Codai, LLC 2010")]
 [assembly: AssemblyProductAttribute("S#arp Architecture Contrib (Release)")]
 [assembly: AssemblyConfigurationAttribute("Release")]
