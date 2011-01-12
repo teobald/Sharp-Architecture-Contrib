@@ -15,6 +15,7 @@
     using SharpArchContrib.Data.NHibernate.Search;
     using SharpArchContrib.Specifications.DomainModel.Entities;
 
+    [Subject(typeof(IndexBuilder<Post>))]
     public class When_the_create_index_method_is_called : Specification<IIndexBuilder<Post>, IndexBuilder<Post>>
     {
         static IRepositoryWithTypedId<Post, int> postRepository;
