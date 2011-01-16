@@ -23,7 +23,7 @@
   </ItemGroup>
   
   <PropertyGroup>
-    <RunMSpecTests>True</RunMSpecTests>
+    <RunMSpecTests>False</RunMSpecTests>
     <MSpecSpecificationAssemblies>"$(MSBuildProjectDirectory)\..\Solutions\SharpArchContrib.Specifications\Bin\Release\SharpArchContrib.Specifications.dll"</MSpecSpecificationAssemblies>
   </PropertyGroup>
 
