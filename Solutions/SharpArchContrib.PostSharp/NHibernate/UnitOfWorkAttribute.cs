@@ -1,6 +1,6 @@
 using System;
 using PostSharp.Extensibility;
-using PostSharp.Laos;
+using PostSharp.Aspects;
 using SharpArch.Data.NHibernate;
 using SharpArchContrib.Data.NHibernate;
 
@@ -23,7 +23,7 @@ namespace SharpArchContrib.PostSharp.NHibernate {
             set { Settings = value; }
         }
 
-        protected override object CloseUnitOfWork(MethodExecutionEventArgs eventArgs) {
+        protected override object CloseUnitOfWork(MethodExecutionArgs eventArgs) {
             object transactionState = base.CloseUnitOfWork(eventArgs);
             if (TransactionManager.TransactionDepth == 0) {
                 var sessionStorage = (NHibernateSession.Storage as IUnitOfWorkSessionStorage);

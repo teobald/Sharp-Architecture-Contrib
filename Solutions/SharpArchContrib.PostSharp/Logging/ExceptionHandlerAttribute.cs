@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Practices.ServiceLocation;
 using PostSharp.Extensibility;
-using PostSharp.Laos;
+using PostSharp.Aspects;
 using SharpArchContrib.Core.Logging;
 
 namespace SharpArchContrib.PostSharp.Logging {
@@ -42,7 +42,7 @@ namespace SharpArchContrib.PostSharp.Logging {
             }
         }
 
-        public override void OnException(MethodExecutionEventArgs eventArgs) {
+        public override void OnException(MethodExecutionArgs eventArgs) {
             ExceptionLogger.LogException(eventArgs.Exception, IsSilent, eventArgs.Method.DeclaringType);
             if (IsSilent) {
                 eventArgs.FlowBehavior = FlowBehavior.Return;

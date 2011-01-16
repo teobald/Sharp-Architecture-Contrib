@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Practices.ServiceLocation;
 using PostSharp.Extensibility;
-using PostSharp.Laos;
+using PostSharp.Aspects;
 using SharpArch.Core;
 using SharpArch.Data.NHibernate;
 using SharpArchContrib.Core.Logging;
@@ -72,12 +72,12 @@ namespace SharpArchContrib.PostSharp.NHibernate {
 
         #endregion
 
-        public override void OnEntry(MethodExecutionEventArgs eventArgs) {
-            eventArgs.InstanceTag = TransactionManager.PushTransaction(FactoryKey, eventArgs.InstanceTag);
+        public override void OnEntry(MethodExecutionArgs eventArgs) {
+            eventArgs.MethodExecutionTag = TransactionManager.PushTransaction(FactoryKey, eventArgs.MethodExecutionTag);
         }
 
-        public override void OnException(MethodExecutionEventArgs eventArgs) {
-            eventArgs.InstanceTag = CloseUnitOfWork(eventArgs);
+        public override void OnException(MethodExecutionArgs eventArgs) {
+            eventArgs.MethodExecutionTag = CloseUnitOfWork(eventArgs);
             if (!(eventArgs.Exception is AbortTransactionException)) {
                 ExceptionLogger.LogException(eventArgs.Exception, IsExceptionSilent, eventArgs.Method.DeclaringType);
             }
@@ -88,12 +88,12 @@ namespace SharpArchContrib.PostSharp.NHibernate {
             }
         }
 
-        public override void OnSuccess(MethodExecutionEventArgs eventArgs) {
-            eventArgs.InstanceTag = CloseUnitOfWork(eventArgs);
+        public override void OnSuccess(MethodExecutionArgs eventArgs) {
+            eventArgs.MethodExecutionTag = CloseUnitOfWork(eventArgs);
         }
 
-        protected virtual object CloseUnitOfWork(MethodExecutionEventArgs eventArgs) {
-            object transactionState = eventArgs.InstanceTag;
+        protected virtual object CloseUnitOfWork(MethodExecutionArgs eventArgs) {
+            object transactionState = eventArgs.MethodExecutionTag;
             if (eventArgs.Exception == null) {
                 NHibernateSession.CurrentFor(FactoryKey).Flush();
                 transactionState = TransactionManager.CommitTransaction(FactoryKey, transactionState);
