@@ -44,7 +44,7 @@
             IndexWriter writer = null;
             var entityType = typeof(T);
 
-            DirectoryInfo entityIndexDirectory = GetEntityIndexDirectory(entityType);
+            DirectoryInfo entityIndexDirectory = this.GetEntityIndexDirectory(entityType);
             if (entityIndexDirectory.Exists)
             {
                 entityIndexDirectory.Delete(true);
@@ -77,13 +77,22 @@
             }
         }
 
-        private static DirectoryInfo GetEntityIndexDirectory(Type entityType)
+        public virtual DirectoryInfo GetEntityIndexDirectory(Type entityType)
         {
-            INHSConfigCollection nhsConfigCollection = CfgHelper.LoadConfiguration();
-            string property = nhsConfigCollection.DefaultConfiguration.Properties["hibernate.search.default.indexBase"];
+            INHSConfiguration nhsConfiguration = GetSearchConfiguration(this.factoryKey);
+            string property = nhsConfiguration.Properties["hibernate.search.default.indexBase"];
             var fi = new FileInfo(property);
             var indexDirectoryPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, fi.Name, entityType.Name);
             return new DirectoryInfo(indexDirectoryPath);
         }
+
+        private static INHSConfiguration GetSearchConfiguration(string factoryKey)
+        {
+            INHSConfigCollection nhsConfigCollection = CfgHelper.LoadConfiguration();
+            INHSConfiguration nhsConfiguration = NHibernateSession.IsConfiguredForMultipleDatabases() ? 
+                nhsConfigCollection.GetConfiguration(factoryKey) : nhsConfigCollection.DefaultConfiguration;
+
+            return nhsConfiguration;
+        }  
     }
 }
