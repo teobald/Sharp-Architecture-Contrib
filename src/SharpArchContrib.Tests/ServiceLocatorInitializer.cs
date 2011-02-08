@@ -2,6 +2,7 @@ using System;
 using Castle.Windsor;
 using CommonServiceLocator.WindsorAdapter;
 using Microsoft.Practices.ServiceLocation;
+using SharpArch.Data.NHibernate;
 using SharpArchContrib.Castle.CastleWindsor;
 using SharpArchContrib.Data.NHibernate;
 using Tests.NHibernateTests;
@@ -22,6 +23,8 @@ namespace Tests {
         }
 
         private static void RegisterTestServices(IWindsorContainer container) {
+            container.AddComponent("SessionFactoryKeyProvider", typeof(ISessionFactoryKeyProvider),
+                                   typeof(DefaultSessionFactoryKeyProvider));
             container.AddComponent("LogTestClass", typeof(ILogTestClass), typeof(LogTestClass));
             container.AddComponent("SystemTransactionTestProvider", typeof(ITransactionTestProvider),
                                    typeof(SystemTransactionTestProvider));
