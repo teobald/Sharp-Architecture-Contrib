@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using Castle.Core.Interceptor;
 using Castle.DynamicProxy;
 using Microsoft.Practices.ServiceLocation;
 using NUnit.Framework;

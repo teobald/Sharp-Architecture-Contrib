@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Castle.Core;
-using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Facilities;
 using SharpArchContrib.Core;

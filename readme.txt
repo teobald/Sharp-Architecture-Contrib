@@ -9,13 +9,12 @@ Additional Contributions to Sharp Architcture
 =============================================
 This is an early beta containing additional contributions to Sharp Architecture.
 This project is currently sharing a home with its parent, Sharp Architecture, at
-http://code.google.com/p/sharp-architecture/.
+http://www.sharparchitecture.net/.
 
 URLs of Interest:
 
-- Downloads: http://github.com/codai/Sharp-Architecture-Contrib/downloads
-- GitHub Repository: http://github.com/codai/Sharp-Architecture-Contrib
-- Downloads: http://github.com/codai/Sharp-Architecture-Contrib/downloads
+- Downloads: http://github.com/sharparchitecture/Sharp-Architecture-Contrib/downloads
+- GitHub Repository: http://github.com/sharparchitecture/Sharp-Architecture-Contrib
 
 
 =============================================
@@ -48,4 +47,4 @@ folder.
 Additional Dependencies
 =============================================
 SharpArchContrib currently depends on the master branch of SharpArch. The correct SharpArch 
-binaries and soure will be maintained on the SharpArchContrib page for convinience during the beta.
+binaries and source will be maintained on the SharpArchContrib page for convinience during the beta.
