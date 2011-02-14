@@ -31,7 +31,7 @@ namespace SharpArchContrib.Core.Logging {
                     }
                 }
                 logMessage.Append(")");
-                logger.Log(LoggingLevel.Debug, logMessage.ToString());
+                logger.Log(entryLevel, logMessage.ToString());
             }
         }
 
