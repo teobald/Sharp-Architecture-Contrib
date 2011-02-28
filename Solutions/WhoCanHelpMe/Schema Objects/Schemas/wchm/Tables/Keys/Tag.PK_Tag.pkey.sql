@@ -1,3 +1,0 @@
-﻿ALTER TABLE [wchm].Tags
-	ADD CONSTRAINT [PK_Tags]
-	PRIMARY KEY ([TagId])
