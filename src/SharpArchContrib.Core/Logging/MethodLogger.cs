@@ -38,7 +38,7 @@ namespace SharpArchContrib.Core.Logging {
         public void LogSuccess(MethodBase methodBase, object returnValue, LoggingLevel successLevel) {
             ILog logger = LogManager.GetLogger(methodBase.DeclaringType);
             if (ShouldLog(logger, successLevel, methodBase)) {
-                logger.Log(LoggingLevel.Debug,
+                logger.Log(successLevel,
                            string.Format("{0} Returns:[{1}]", methodBase.Name,
                                          returnValue != null ? returnValue.ToString() : ""));
             }
