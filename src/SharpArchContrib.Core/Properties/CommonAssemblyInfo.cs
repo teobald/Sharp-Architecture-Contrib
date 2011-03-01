@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisibleAttribute(false)]
 [assembly: AssemblyCultureAttribute("")]
 [assembly: AssemblyVersionAttribute("0.6.0")]
-[assembly: AssemblyFileVersionAttribute("0.6.0.0")]
+[assembly: AssemblyFileVersionAttribute("0.6.1.0")]
 [assembly: AssemblyCopyrightAttribute("Copyright © Codai, LLC 2011")]
 [assembly: AssemblyProductAttribute("S#arp Architecture Contrib (Release)")]
 [assembly: AssemblyConfigurationAttribute("Release")]

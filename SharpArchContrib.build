@@ -20,7 +20,7 @@
 
   
   <!-- Version Info -->
-  <property name="appVersion" value="0.6.0"/>
+  <property name="appVersion" value="0.6.1"/>
   <property name="revision" value="0"/>
   <property name="company.name" value="Codai, LLC"/>
 
@@ -90,7 +90,7 @@
       <attributes>
         <attribute type="ComVisibleAttribute" value="false" />
         <attribute type="AssemblyCultureAttribute" value=""/>
-        <attribute type="AssemblyVersionAttribute" value="${appVersion}" />
+        <attribute type="AssemblyVersionAttribute" value="0.6.0" />
         <attribute type="AssemblyFileVersionAttribute" value="${appVersion}.${revision}"/>
         <attribute type="AssemblyCopyrightAttribute" value="Copyright © ${company.name} ${datetime::get-year(datetime::now())}" />
         <attribute type="AssemblyProductAttribute" value="S#arp Architecture Contrib (${configuration})"/>

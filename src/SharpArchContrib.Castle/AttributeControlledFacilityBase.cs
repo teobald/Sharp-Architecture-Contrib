@@ -31,7 +31,7 @@ namespace SharpArchContrib.Castle {
 
         private bool AddInterceptorIfNeeded(IHandler handler, List<Attribute> attributes) {
             foreach (Attribute attribute in attributes) {
-                handler.ComponentModel.Interceptors.Add(new InterceptorReference(interceptorType.Name));
+                handler.ComponentModel.Interceptors.AddIfNotInCollection(new InterceptorReference(interceptorType.Name));
                 return true;
             }
 

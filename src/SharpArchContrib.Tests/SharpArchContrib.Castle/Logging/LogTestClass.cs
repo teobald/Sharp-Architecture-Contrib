@@ -2,7 +2,7 @@ using SharpArchContrib.Castle.Logging;
 using System;
 
 namespace Tests.SharpArchContrib.Castle.Logging {
-    public class LogTestClass : ILogTestClass {
+    public class LogTestClass : ILogTestClass, IAmForwarded{
         #region ILogTestClass Members
 
         [Log]
@@ -22,6 +22,14 @@ namespace Tests.SharpArchContrib.Castle.Logging {
         [Log]
         public virtual void ThrowException(){
             throw new Exception("Boom");
+        }
+
+        #endregion
+
+        #region ILogTestClass Members
+        [Log]
+        public void MethodFromForwarded() {
+            return;
         }
 
         #endregion

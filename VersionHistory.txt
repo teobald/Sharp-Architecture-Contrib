@@ -1,3 +1,9 @@
+Version 0.6.1
+==============================================================================
+* Assembly version left at 0.6.0 for easier upgrade
+Fixed issue #1 https://github.com/sharparchitecture/Sharp-Architecture-Contrib/issues#issue/1
+Fixed issue #2 https://github.com/sharparchitecture/Sharp-Architecture-Contrib/issues#issue/2
+
 Version 0.6.0
 ==============================================================================
 Introduced SharpArchContrib.Web.Mvc and RazorViewEngine
