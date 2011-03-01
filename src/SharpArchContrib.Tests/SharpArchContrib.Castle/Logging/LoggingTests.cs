@@ -10,6 +10,8 @@ using System;
 namespace Tests.SharpArchContrib.Castle.Logging {
     [TestFixture]
     public class LoggingTests {
+        private readonly string logPath = Path.GetFullPath(@"TestData/Tests.SharpArchContrib.Castle.Logging.DebugLevelTests.DebugLevel.log");
+
         private void TryLogging() {
             var testClass = ServiceLocator.Current.GetInstance<ILogTestClass>();
             testClass.Method("Tom", 1);
@@ -28,6 +30,22 @@ namespace Tests.SharpArchContrib.Castle.Logging {
             testLogger2.GetMessageNotLogged("message3");
         }
 
+        private void TryLoggingViaForwardedType()
+        {
+            var testClass = ServiceLocator.Current.GetInstance<IAmForwarded>();
+            testClass.MethodFromForwarded();
+        }
+
+        private string ReadLogFile(string logPath)
+        {
+            using (var fs = new FileStream(logPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (var sr = new StreamReader(fs))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
+        }
 
         public class TestLogger2 {
             [Log]
@@ -49,11 +67,24 @@ namespace Tests.SharpArchContrib.Castle.Logging {
         public void LoggingDebugEntryWorks() {
             TryLogging();
             TryLoggingViaProxy();
-            string logPath =
-                Path.GetFullPath(@"TestData/Tests.SharpArchContrib.Castle.Logging.DebugLevelTests.DebugLevel.log");
             File.Exists(logPath).ShouldBeTrue();
             var debugLogInfo = new FileInfo(logPath);
             debugLogInfo.Length.ShouldBeGreaterThan(0);
+        }
+
+        // issue#1 https://github.com/sharparchitecture/Sharp-Architecture-Contrib/issues#issue/1
+        [Test]
+        public void LoggingViaForwardedTypeWorks() {
+            TryLoggingViaForwardedType();
+            File.Exists(logPath).ShouldBeTrue();
+            var debugLogInfo = new FileInfo(logPath);
+            debugLogInfo.Length.ShouldBeGreaterThan(0);
+            var logFileContents = ReadLogFile(logPath);
+            string messageThatShouldBeLoggedOnce = "MethodFromForwarded()";
+            int firstOccurenceLocation = logFileContents.IndexOf(messageThatShouldBeLoggedOnce);
+            int lastOccurenceLocation = logFileContents.LastIndexOf(messageThatShouldBeLoggedOnce);
+            firstOccurenceLocation.ShouldBeGreaterThan(0);
+            firstOccurenceLocation.ShouldEqual(lastOccurenceLocation);
         }
     }
 }
