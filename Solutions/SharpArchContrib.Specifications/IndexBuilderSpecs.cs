@@ -4,7 +4,6 @@
     using System.IO;
 
     using Machine.Specifications;
-    using Machine.Specifications.AutoMocking.Rhino;
 
     using Rhino.Mocks;
 
@@ -16,15 +15,17 @@
     using SharpArchContrib.Specifications.DomainModel.Entities;
 
     [Subject(typeof(IndexBuilder<Post>))]
-    public class When_the_create_index_method_is_called : Specification<IIndexBuilder<Post>, IndexBuilder<Post>>
+    public class When_the_create_index_method_is_called
     {
         static IRepositoryWithTypedId<Post, int> postRepository;
+        static IIndexBuilder<Post> subject;
 
         private Establish context = () =>
             {
                 InitializeNHibernate();
-                postRepository = DependencyOf<IRepositoryWithTypedId<Post, int>>();
+                postRepository = MockRepository.GenerateStub<IRepositoryWithTypedId<Post, int>>();
                 postRepository.Stub(x => x.GetAll()).Return(new List<Post>());
+                subject = new IndexBuilder<Post>(postRepository);
             };
 
         private static void InitializeNHibernate()

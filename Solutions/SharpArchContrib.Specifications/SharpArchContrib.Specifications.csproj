@@ -41,11 +41,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Lucene.Net\Lucene.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Machine.Specifications">
+    <Reference Include="Machine.Specifications, Version=0.4.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Machine.Specifications\Machine.Specifications.dll</HintPath>
-    </Reference>
-    <Reference Include="Machine.Specifications.AutoMocking">
-      <HintPath>..\..\ReferencedAssemblies\Machine.Specifications\Machine.Specifications.AutoMocking.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\ReferencedAssemblies\NHibernate\NHibernate.dll</HintPath>
