@@ -1,109 +1,186 @@
-using System;
-using Microsoft.Practices.ServiceLocation;
-using PostSharp.Extensibility;
-using PostSharp.Laos;
-using SharpArch.Core;
-using SharpArch.Data.NHibernate;
-using SharpArchContrib.Core.Logging;
-using SharpArchContrib.Data.NHibernate;
+namespace SharpArchContrib.PostSharp.NHibernate
+{
+    using System;
 
-namespace SharpArchContrib.PostSharp.NHibernate {
+    using Microsoft.Practices.ServiceLocation;
+
+    using global::PostSharp.Aspects;
+    using global::PostSharp.Extensibility;
+
+    using SharpArch.Domain;
+    using SharpArch.NHibernate;
+
+    using SharpArchContrib.Core.Logging;
+    using SharpArchContrib.Data.NHibernate;
+
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = false)]
     [MulticastAttributeUsage(MulticastTargets.Method, AllowMultiple = true)]
     [Serializable]
-    public class TransactionAttribute : OnMethodBoundaryAspect, ITransactionAttributeSettings {
+    public class TransactionAttribute : OnMethodBoundaryAspect, ITransactionAttributeSettings
+    {
+        #region Constants and Fields
+
+        protected TransactionAttributeSettings attributeSettings;
+
         private IExceptionLogger exceptionLogger;
-        protected TransactionAttributeSettings settings;
+
         private ITransactionManager transactionManager;
 
-        public TransactionAttribute() {
-            settings = new TransactionAttributeSettings();
+        #endregion
+
+        #region Constructors and Destructors
+
+        public TransactionAttribute()
+        {
+            this.attributeSettings = new TransactionAttributeSettings();
         }
 
-        public string FactoryKey {
-            get { return Settings.FactoryKey; }
-            set {
-                if (value == null) {
+        #endregion
+
+        #region Properties
+
+        public string FactoryKey
+        {
+            get
+            {
+                return this.Settings.FactoryKey;
+            }
+
+            set
+            {
+                if (value == null)
+                {
                     throw new PreconditionException("FactoryKey cannot be null");
                 }
-                Settings.FactoryKey = value;
+
+                this.Settings.FactoryKey = value;
             }
         }
 
-        public bool IsExceptionSilent {
-            get { return Settings.IsExceptionSilent; }
-            set { Settings.IsExceptionSilent = value; }
-        }
+        public bool IsExceptionSilent
+        {
+            get
+            {
+                return this.Settings.IsExceptionSilent;
+            }
 
-        public object ReturnValue {
-            get { return Settings.ReturnValue; }
-            set { Settings.ReturnValue = value; }
-        }
-
-        protected ITransactionManager TransactionManager {
-            get {
-                if (transactionManager == null) {
-                    transactionManager = ServiceLocator.Current.GetInstance<ITransactionManager>();
-                }
-                return transactionManager;
+            set
+            {
+                this.Settings.IsExceptionSilent = value;
             }
         }
 
-        private IExceptionLogger ExceptionLogger {
-            get {
-                if (exceptionLogger == null) {
-                    exceptionLogger = ServiceLocator.Current.GetInstance<IExceptionLogger>();
-                }
-                return exceptionLogger;
+        public object ReturnValue
+        {
+            get
+            {
+                return this.Settings.ReturnValue;
+            }
+
+            set
+            {
+                this.Settings.ReturnValue = value;
             }
         }
 
-        #region ITransactionAttributeSettings Members
+        public TransactionAttributeSettings Settings
+        {
+            get
+            {
+                return this.attributeSettings;
+            }
 
-        public TransactionAttributeSettings Settings {
-            get { return settings; }
-            set {
-                if (value == null) {
+            set
+            {
+                if (value == null)
+                {
                     throw new PreconditionException("Settings must not be null");
                 }
-                settings = value;
+
+                this.attributeSettings = value;
+            }
+        }
+
+        protected ITransactionManager TransactionManager
+        {
+            get
+            {
+                if (this.transactionManager == null)
+                {
+                    this.transactionManager = ServiceLocator.Current.GetInstance<ITransactionManager>();
+                }
+
+                return this.transactionManager;
+            }
+        }
+
+        private IExceptionLogger ExceptionLogger
+        {
+            get
+            {
+                if (this.exceptionLogger == null)
+                {
+                    this.exceptionLogger = ServiceLocator.Current.GetInstance<IExceptionLogger>();
+                }
+
+                return this.exceptionLogger;
             }
         }
 
         #endregion
 
-        public override void OnEntry(MethodExecutionEventArgs eventArgs) {
-            eventArgs.InstanceTag = TransactionManager.PushTransaction(FactoryKey, eventArgs.InstanceTag);
+        #region Public Methods
+
+        public sealed override void OnEntry(MethodExecutionArgs eventArgs)
+        {
+            eventArgs.MethodExecutionTag = this.TransactionManager.PushTransaction(
+                this.FactoryKey, eventArgs.MethodExecutionTag);
         }
 
-        public override void OnException(MethodExecutionEventArgs eventArgs) {
-            eventArgs.InstanceTag = CloseUnitOfWork(eventArgs);
-            if (!(eventArgs.Exception is AbortTransactionException)) {
-                ExceptionLogger.LogException(eventArgs.Exception, IsExceptionSilent, eventArgs.Method.DeclaringType);
+        public override sealed void OnException(MethodExecutionArgs eventArgs)
+        {
+            eventArgs.MethodExecutionTag = this.CloseUnitOfWork(eventArgs.MethodExecutionTag, eventArgs.Exception == null);
+
+            if (!(eventArgs.Exception is AbortTransactionException))
+            {
+                this.ExceptionLogger.LogException(
+                    eventArgs.Exception, this.IsExceptionSilent, eventArgs.Method.DeclaringType);
             }
-            if (TransactionManager.TransactionDepth == 0 &&
-                (IsExceptionSilent || eventArgs.Exception is AbortTransactionException)) {
+
+            if (this.TransactionManager.TransactionDepth == 0 &&
+                (this.IsExceptionSilent || eventArgs.Exception is AbortTransactionException))
+            {
                 eventArgs.FlowBehavior = FlowBehavior.Return;
-                eventArgs.ReturnValue = ReturnValue;
+                eventArgs.ReturnValue = this.ReturnValue;
             }
         }
 
-        public override void OnSuccess(MethodExecutionEventArgs eventArgs) {
-            eventArgs.InstanceTag = CloseUnitOfWork(eventArgs);
+        public sealed override void OnSuccess(MethodExecutionArgs eventArgs)
+        {
+            eventArgs.MethodExecutionTag = this.CloseUnitOfWork(eventArgs.MethodExecutionTag, eventArgs.Exception == null);
         }
 
-        protected virtual object CloseUnitOfWork(MethodExecutionEventArgs eventArgs) {
-            object transactionState = eventArgs.InstanceTag;
-            if (eventArgs.Exception == null) {
-                NHibernateSession.CurrentFor(FactoryKey).Flush();
-                transactionState = TransactionManager.CommitTransaction(FactoryKey, transactionState);
+        #endregion
+
+        #region Methods
+
+        protected virtual object CloseUnitOfWork(object transactionState, bool commit)
+        {
+            if (commit)
+            {
+                NHibernateSession.CurrentFor(this.FactoryKey).Flush();
+                transactionState = this.TransactionManager.CommitTransaction(this.FactoryKey, transactionState);
             }
-            else {
-                transactionState = TransactionManager.RollbackTransaction(FactoryKey, transactionState);
+            else
+            {
+                transactionState = this.TransactionManager.RollbackTransaction(this.FactoryKey, transactionState);
             }
-            transactionState = TransactionManager.PopTransaction(FactoryKey, transactionState);
+
+            transactionState = this.TransactionManager.PopTransaction(this.FactoryKey, transactionState);
 
             return transactionState;
         }
+
+        #endregion
     }
 }

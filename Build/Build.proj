@@ -23,7 +23,7 @@
   </ItemGroup>
   
   <PropertyGroup>
-    <RunMSpecTests>True</RunMSpecTests>
+    <RunMSpecTests>False</RunMSpecTests>
 	<MSpecRunner>mspec-clr4.exe</MSpecRunner>
     <MSpecSpecificationAssemblies>"$(MSBuildProjectDirectory)\..\Solutions\SharpArchContrib.Specifications\Bin\Release\SharpArchContrib.Specifications.dll"</MSpecSpecificationAssemblies>
   </PropertyGroup>

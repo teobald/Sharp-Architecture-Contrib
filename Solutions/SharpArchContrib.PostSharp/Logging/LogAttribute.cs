@@ -1,68 +1,128 @@
-using System;
-using log4net;
-using Microsoft.Practices.ServiceLocation;
-using PostSharp.Extensibility;
-using PostSharp.Laos;
-using SharpArchContrib.Core.Logging;
+namespace SharpArchContrib.PostSharp.Logging
+{
+    using System;
 
-namespace SharpArchContrib.PostSharp.Logging {
+    using log4net;
+
+    using Microsoft.Practices.ServiceLocation;
+
+    using global::PostSharp.Aspects;
+    using global::PostSharp.Extensibility;
+
+    using SharpArchContrib.Core.Logging;
+
     [Serializable]
-    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false,
+    [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, 
         Inherited = false)]
     [MulticastAttributeUsage(
-        MulticastTargets.Method | MulticastTargets.InstanceConstructor | MulticastTargets.StaticConstructor,
+        MulticastTargets.Method | MulticastTargets.InstanceConstructor | MulticastTargets.StaticConstructor, 
         AllowMultiple = true)]
-    public class LogAttribute : OnMethodBoundaryAspect {
+    public class LogAttribute : OnMethodBoundaryAspect
+    {
+        #region Constants and Fields
+
         private IMethodLogger methodLogger;
 
-        public LogAttribute() {
-            Settings = new LogAttributeSettings(LoggingLevel.Debug, LoggingLevel.Debug, LoggingLevel.Error);
+        #endregion
+
+        #region Constructors and Destructors
+
+        public LogAttribute()
+        {
+            this.Settings = new LogAttributeSettings(LoggingLevel.Debug, LoggingLevel.Debug, LoggingLevel.Error);
         }
 
-        public LoggingLevel EntryLevel {
-            get { return Settings.EntryLevel; }
-            set { Settings.EntryLevel = value; }
+        #endregion
+
+        #region Properties
+
+        public LoggingLevel EntryLevel
+        {
+            get
+            {
+                return this.Settings.EntryLevel;
+            }
+
+            set
+            {
+                this.Settings.EntryLevel = value;
+            }
         }
 
-        public LoggingLevel SuccessLevel {
-            get { return Settings.SuccessLevel; }
-            set { Settings.SuccessLevel = value; }
-        }
+        public LoggingLevel ExceptionLevel
+        {
+            get
+            {
+                return this.Settings.ExceptionLevel;
+            }
 
-        public LoggingLevel ExceptionLevel {
-            get { return Settings.ExceptionLevel; }
-            set { Settings.ExceptionLevel = value; }
+            set
+            {
+                this.Settings.ExceptionLevel = value;
+            }
         }
 
         public LogAttributeSettings Settings { get; set; }
 
-        private IMethodLogger MethodLogger {
-            get {
-                if (methodLogger == null) {
-                    methodLogger = ServiceLocator.Current.GetInstance<IMethodLogger>();
-                }
-                return methodLogger;
+        public LoggingLevel SuccessLevel
+        {
+            get
+            {
+                return this.Settings.SuccessLevel;
+            }
+
+            set
+            {
+                this.Settings.SuccessLevel = value;
             }
         }
 
-        public override void OnEntry(MethodExecutionEventArgs eventArgs) {
-            MethodLogger.LogEntry(eventArgs.Method, eventArgs.GetReadOnlyArgumentArray(), EntryLevel);
+        private IMethodLogger MethodLogger
+        {
+            get
+            {
+                if (this.methodLogger == null)
+                {
+                    this.methodLogger = ServiceLocator.Current.GetInstance<IMethodLogger>();
+                }
+
+                return this.methodLogger;
+            }
         }
 
-        public override void OnSuccess(MethodExecutionEventArgs eventArgs) {
-            methodLogger.LogSuccess(eventArgs.Method, eventArgs.ReturnValue, SuccessLevel);
+        #endregion
+
+        #region Public Methods
+
+        public sealed override void OnEntry(MethodExecutionArgs eventArgs)
+        {
+            this.MethodLogger.LogEntry(eventArgs.Method, eventArgs.Arguments.ToArray(), this.EntryLevel);
         }
 
-        public override void OnException(MethodExecutionEventArgs eventArgs) {
-            methodLogger.LogException(eventArgs.Method, eventArgs.Exception, ExceptionLevel);
+        public sealed override void OnException(MethodExecutionArgs eventArgs)
+        {
+            this.methodLogger.LogException(eventArgs.Method, eventArgs.Exception, this.ExceptionLevel);
         }
 
-        private bool ShouldLog(ILog logger, LoggingLevel loggingLevel, MethodExecutionEventArgs args) {
-            if (args != null && args.Method != null && args.Method.Name != null) {
+        public sealed override void OnSuccess(MethodExecutionArgs eventArgs)
+        {
+            this.methodLogger.LogSuccess(eventArgs.Method, eventArgs.ReturnValue, this.SuccessLevel);
+        }
+
+        #endregion
+
+        #region Methods
+
+        private bool ShouldLog(ILog logger, LoggingLevel loggingLevel, MethodExecutionArgs args)
+        {
+            if (args != null && args.Method != null && args.Method.Name != null)
+            {
                 return logger.IsEnabledFor(loggingLevel);
             }
 
             return false;
         }
+
+        #endregion
     }
 }

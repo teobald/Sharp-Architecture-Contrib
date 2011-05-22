@@ -17,14 +17,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Castle", "SharpArchContrib.Castle\SharpArchContrib.Castle.csproj", "{557E1790-FBDD-4FDE-86B2-93E2AD0E9E24}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{8A2474ED-405C-4CFC-83C9-E6BF014D466A}"
-	ProjectSection(SolutionItems) = preProject
-		..\Build\Build.cmd = ..\Build\Build.cmd
-		..\Build\Build.proj = ..\Build\Build.proj
-		..\Build\BuildAndPackage.cmd = ..\Build\BuildAndPackage.cmd
-		..\Build\BuildAndTest.cmd = ..\Build\BuildAndTest.cmd
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.Specifications", "SharpArchContrib.Specifications\SharpArchContrib.Specifications.csproj", "{7EF82E6F-9117-4B69-A8EF-329BBEF0861A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpArchContrib.PostSharp", "SharpArchContrib.PostSharp\SharpArchContrib.PostSharp.csproj", "{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -52,6 +48,10 @@ Global
 		{7EF82E6F-9117-4B69-A8EF-329BBEF0861A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EF82E6F-9117-4B69-A8EF-329BBEF0861A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EF82E6F-9117-4B69-A8EF-329BBEF0861A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

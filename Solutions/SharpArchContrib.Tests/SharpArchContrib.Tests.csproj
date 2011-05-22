@@ -127,8 +127,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\NUnit\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="SharpArch.Core">
-      <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.Core.dll</HintPath>
+    <Reference Include="PostSharp, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ReferencedAssemblies\PostSharp\PostSharp.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
       <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.Domain.dll</HintPath>
@@ -205,6 +206,12 @@
     <Compile Include="NHibernateTests\TransactionTests.cs" />
     <Compile Include="NHibernateTests\TransactionTestsBase.cs" />
     <Compile Include="SharpArchContrib.Core\ParameterCheckTests.cs" />
+    <Compile Include="SharpArchContrib.PostSharp\Logging\DebugLevelTests.cs" />
+    <Compile Include="SharpArchContrib.PostSharp\Logging\ExceptionHandlerAttributeTests.cs" />
+    <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateTransactionTestProvider.cs" />
+    <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateUnitOfWorkTestProvider.cs" />
+    <Compile Include="SharpArchContrib.PostSharp\NHibernate\SystemTransactionTestProvider.cs" />
+    <Compile Include="SharpArchContrib.PostSharp\NHibernate\SystemUnitOfWorkTestProvider.cs" />
     <Compile Include="SyntaxHelper.cs" />
     <Compile Include="TestCategories.cs" />
   </ItemGroup>
@@ -225,6 +232,10 @@
     <ProjectReference Include="..\SharpArchContrib.Data\SharpArchContrib.Data.csproj">
       <Project>{E33E2468-B055-4F3D-83DB-8F991F600A47}</Project>
       <Name>SharpArchContrib.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpArchContrib.PostSharp\SharpArchContrib.PostSharp.csproj">
+      <Project>{C3928AAD-61C3-4C2E-8FB3-A177B0DC3DB1}</Project>
+      <Name>SharpArchContrib.PostSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
