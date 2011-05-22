@@ -1,28 +1,37 @@
-﻿using System.IO;
-using NUnit.Framework;
-using SharpArch.Testing.NUnit;
-using SharpArchContrib.Core.Logging;
-using SharpArchContrib.PostSharp.Logging;
+﻿namespace Tests.SharpArchContrib.PostSharp.Logging
+{
+    using System.IO;
 
-namespace Tests.SharpArchContrib.PostSharp.Logging {
-    
+    using NUnit.Framework;
+
+    using SharpArch.Testing.NUnit;
+
+    using global::SharpArchContrib.Core.Logging;
+    using global::SharpArchContrib.PostSharp.Logging;
+
     [TestFixture]
-    public class DebugLevelTests {
-        [Log]
-        private void DebugLevelTestsCallThatLogs() {}
-
-        [Log(EntryLevel = LoggingLevel.Info)]
-        private void DebugLevelTestsCallThatDoesNotLog() {}
-
+    public class DebugLevelTests
+    {
         [Test]
-        public void LoggingDebugEntryWorks() {
-            DebugLevelTestsCallThatLogs();
-            DebugLevelTestsCallThatDoesNotLog();
+        public void LoggingDebugEntryWorks()
+        {
+            this.DebugLevelTestsCallThatLogs();
+            this.DebugLevelTestsCallThatDoesNotLog();
             string logPath =
                 Path.GetFullPath(@"TestData/Tests.SharpArchContrib.PostSharp.Logging.DebugLevelTests.DebugLevel.log");
             File.Exists(logPath).ShouldBeTrue();
             var debugLogInfo = new FileInfo(logPath);
             debugLogInfo.Length.ShouldBeGreaterThan(0);
+        }
+
+        [Log(EntryLevel = LoggingLevel.Info)]
+        private void DebugLevelTestsCallThatDoesNotLog()
+        {
+        }
+
+        [Log]
+        private void DebugLevelTestsCallThatLogs()
+        {
         }
     }
 }

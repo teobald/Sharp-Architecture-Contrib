@@ -1,53 +1,67 @@
-using SharpArchContrib.Data.NHibernate;
-using SharpArchContrib.PostSharp.NHibernate;
-using Tests.NHibernateTests;
+namespace Tests.SharpArchContrib.PostSharp.NHibernate
+{
+    using global::SharpArchContrib.Data.NHibernate;
+    using global::SharpArchContrib.PostSharp.NHibernate;
 
-namespace Tests.SharpArchContrib.PostSharp.NHibernate {
-    public class SystemUnitOfWorkTestProvider : TransactionTestProviderBase, ITransactionTestProvider {
-        protected override string TestEntityName {
-            get { return "UnitOfWorkTest"; }
+    using Tests.NHibernateTests;
+
+    public class SystemUnitOfWorkTestProvider : TransactionTestProviderBase, ITransactionTestProvider
+    {
+        public string Name
+        {
+            get
+            {
+                return "PostSharp SystemUnitOfWorkTestProvider";
+            }
         }
 
-        #region ITransactionTestProvider Members
-
-        public string Name {
-            get { return "PostSharp SystemUnitOfWorkTestProvider"; }
+        protected override string TestEntityName
+        {
+            get
+            {
+                return "UnitOfWorkTest";
+            }
         }
 
         [UnitOfWork]
-        public override void DoCommit(string testEntityName) {
+        public override void DoCommit(string testEntityName)
+        {
             base.DoCommit(testEntityName);
         }
 
         [Transaction(IsExceptionSilent = true)]
-        public override void DoCommitSilenceException(string testEntityName) {
+        public override void DoCommitSilenceException(string testEntityName)
+        {
             base.DoCommitSilenceException(testEntityName);
         }
 
         [UnitOfWork]
-        public override void DoRollback() {
-            base.DoRollback();
-        }
-
-        [UnitOfWork]
-        public override void DoNestedCommit() {
+        public override void DoNestedCommit()
+        {
             base.DoNestedCommit();
         }
 
         [UnitOfWork]
-        public override void DoNestedForceRollback() {
+        public override void DoNestedForceRollback()
+        {
             base.DoNestedInnerForceRollback();
         }
 
         [UnitOfWork]
-        public override void DoNestedInnerForceRollback() {
+        public override void DoNestedInnerForceRollback()
+        {
             base.DoNestedInnerForceRollback();
         }
 
-        public void InitTransactionManager() {
-            ServiceLocatorInitializer.Init(typeof(SystemTransactionManager));
+        [UnitOfWork]
+        public override void DoRollback()
+        {
+            base.DoRollback();
         }
 
-        #endregion
+        public void InitTransactionManager()
+        {
+            ServiceLocatorInitializer.Init(typeof(SystemTransactionManager));
+        }
     }
 }

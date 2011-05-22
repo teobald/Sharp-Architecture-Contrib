@@ -1,54 +1,66 @@
-using System;
-using NUnit.Framework;
-using SharpArch.Testing.NUnit;
-using SharpArchContrib.Core.Logging;
-using SharpArchContrib.PostSharp.Logging;
+namespace Tests.SharpArchContrib.PostSharp.Logging
+{
+    using System;
 
-namespace Tests.SharpArchContrib.PostSharp.Logging {
+    using NUnit.Framework;
+
+    using SharpArch.Testing.NUnit;
+
+    using global::SharpArchContrib.Core.Logging;
+    using global::SharpArchContrib.PostSharp.Logging;
+
     [TestFixture]
-    public class ExceptionHandlerAttributeTests {
+    public class ExceptionHandlerAttributeTests
+    {
+        [Test]
+        public void LoggedExceptionDoesNotRethrow()
+        {
+            Assert.DoesNotThrow(() => this.ThrowExceptionSilent());
+        }
+
+        [Test]
+        public void LoggedExceptionDoesNotRethrowWithReturn()
+        {
+            this.ThrowExceptionSilentWithReturn().ShouldEqual(6f);
+        }
+
+        [Test]
+        public void LoggedExceptionDoesNotRethrowWithReturnWithLogAttribute()
+        {
+            this.ThrowExceptionSilentWithReturnWithLogAttribute().ShouldEqual(6f);
+        }
+
+        [Test]
+        public void LoggedExceptionRethrows()
+        {
+            Assert.Throws<NotImplementedException>(() => this.ThrowException());
+        }
+
         [ExceptionHandler]
-        private void ThrowException() {
+        private void ThrowException()
+        {
             throw new NotImplementedException();
         }
 
         [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
-        private float ThrowExceptionSilentWithReturn() {
+        private void ThrowExceptionSilent()
+        {
+            throw new NotImplementedException();
+        }
+
+        [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
+        private float ThrowExceptionSilentWithReturn()
+        {
             throw new NotImplementedException();
             return 7f;
         }
 
-        [ExceptionHandler(IsSilent = true, ReturnValue = 6f)]
-        private void ThrowExceptionSilent() {
-            throw new NotImplementedException();
-        }
-
-        [ExceptionHandler(IsSilent = true, ReturnValue = 6f,
-            AspectPriority = 1)]
+        [ExceptionHandler(IsSilent = true, ReturnValue = 6f, AspectPriority = 1)]
         [Log(ExceptionLevel = LoggingLevel.Error, AspectPriority = 2)]
-        private float ThrowExceptionSilentWithReturnWithLogAttribute() {
+        private float ThrowExceptionSilentWithReturnWithLogAttribute()
+        {
             throw new NotImplementedException();
             return 7f;
-        }
-
-        [Test]
-        public void LoggedExceptionDoesNotRethrow() {
-            Assert.DoesNotThrow(() => ThrowExceptionSilent());
-        }
-
-        [Test]
-        public void LoggedExceptionDoesNotRethrowWithReturn() {
-            ThrowExceptionSilentWithReturn().ShouldEqual(6f);
-        }
-
-        [Test]
-        public void LoggedExceptionDoesNotRethrowWithReturnWithLogAttribute() {
-            ThrowExceptionSilentWithReturnWithLogAttribute().ShouldEqual(6f);
-        }
-
-        [Test]
-        public void LoggedExceptionRethrows() {
-            Assert.Throws<NotImplementedException>(() => ThrowException());
         }
     }
 }
