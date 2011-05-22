@@ -2,7 +2,7 @@ namespace SharpArchContrib.Core
 {
     using System.Collections.Generic;
 
-    using SharpArch.Core;
+    using SharpArch.Domain;
 
     public static class ParameterCheck
     {

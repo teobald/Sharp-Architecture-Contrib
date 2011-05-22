@@ -2,7 +2,7 @@
 {
     using System;
 
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
 
     [Serializable]
     public class TransactionAttributeSettings

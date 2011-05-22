@@ -4,7 +4,7 @@
 
     using NUnit.Framework;
 
-    using SharpArch.Core;
+    using SharpArch.Domain;
 
     using global::SharpArchContrib.Core;
 

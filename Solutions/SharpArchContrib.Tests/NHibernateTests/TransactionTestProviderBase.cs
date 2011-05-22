@@ -1,12 +1,12 @@
 ﻿namespace Tests.NHibernateTests
 {
     using System;
-
-    using SharpArch.Core.PersistenceSupport;
-    using SharpArch.Data.NHibernate;
-    using SharpArch.Testing.NUnit;
-
+    
     using global::SharpArchContrib.Data.NHibernate;
+
+    using SharpArch.Domain.PersistenceSupport;
+    using SharpArch.NHibernate;
+    using SharpArch.Testing.NUnit;
 
     using Tests.DomainModel.Entities;
 
@@ -18,7 +18,7 @@
 
         public void CheckNumberOfEntities(int numberOfEntities)
         {
-            var testEntityRepository = new Repository<TestEntity>();
+            var testEntityRepository = new NHibernateRepository<TestEntity>();
             var testEntities = testEntityRepository.GetAll();
             testEntities.Count.ShouldEqual(numberOfEntities);
         }
@@ -67,7 +67,7 @@
 
         protected void InsertTestEntity(string name)
         {
-            var testEntityRepository = new Repository<TestEntity>();
+            var testEntityRepository = new NHibernateRepository<TestEntity>();
             var testEntity = new TestEntity { Name = name };
             testEntityRepository.SaveOrUpdate(testEntity);
             NHibernateSession.Current.Evict(testEntity);

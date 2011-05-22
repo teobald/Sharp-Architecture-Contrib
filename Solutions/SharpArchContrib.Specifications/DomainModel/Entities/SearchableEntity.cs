@@ -2,7 +2,7 @@
 {
     using NHibernate.Search.Attributes;
 
-    using SharpArch.Core.DomainModel;
+    using SharpArch.Domain.DomainModel;
 
     using SharpArchContrib.Core.Search;
 

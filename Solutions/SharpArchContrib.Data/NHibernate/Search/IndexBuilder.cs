@@ -10,8 +10,8 @@
     using Lucene.Net.Index;
     using Lucene.Net.Store;
 
-    using SharpArch.Core.PersistenceSupport;
-    using SharpArch.Data.NHibernate;
+    using SharpArch.Domain.PersistenceSupport;
+    using SharpArch.NHibernate;
 
     using SharpArchContrib.Core.Search;
 

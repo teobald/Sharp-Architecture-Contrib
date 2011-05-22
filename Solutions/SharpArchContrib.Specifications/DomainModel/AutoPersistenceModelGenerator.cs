@@ -6,8 +6,8 @@ namespace SharpArchContrib.Specifications.DomainModel
     using FluentNHibernate.Automapping;
     using FluentNHibernate.Conventions;
 
-    using SharpArch.Core.DomainModel;
-    using SharpArch.Data.NHibernate.FluentNHibernate;
+    using SharpArch.Domain.DomainModel;
+    using SharpArch.NHibernate.FluentNHibernate;
 
     using SharpArchContrib.Specifications.DomainModel.Conventions;
     using SharpArchContrib.Specifications.DomainModel.Entities;

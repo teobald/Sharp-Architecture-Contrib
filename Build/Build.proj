@@ -45,6 +45,7 @@
   
   <Target Name="PackageArtefacts"
           DependsOnTargets="RunTests;
+							RunSpecs;
                             Package;
                             BuildSuccess" />
 

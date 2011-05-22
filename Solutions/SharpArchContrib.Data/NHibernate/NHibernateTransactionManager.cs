@@ -2,7 +2,7 @@ namespace SharpArchContrib.Data.NHibernate
 {
     using System;
 
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
 
     /// <summary>
     ///   Provides support for System.Transaction transactions

@@ -2,7 +2,7 @@ namespace SharpArchContrib.Castle.NHibernate
 {
     using System;
 
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
 
     using SharpArchContrib.Core.Logging;
     using SharpArchContrib.Data.NHibernate;

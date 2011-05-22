@@ -1,6 +1,6 @@
 ﻿namespace SharpArchContrib.Data.NHibernate
 {
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
 
     public interface IUnitOfWorkSessionStorage : ISessionStorage
     {

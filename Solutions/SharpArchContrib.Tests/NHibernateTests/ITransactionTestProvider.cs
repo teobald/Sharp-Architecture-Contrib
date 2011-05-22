@@ -1,7 +1,6 @@
 ﻿namespace Tests.NHibernateTests
 {
-    using SharpArch.Core.PersistenceSupport;
-
+    using SharpArch.Domain.PersistenceSupport;
     using Tests.DomainModel.Entities;
 
     public interface ITransactionTestProvider

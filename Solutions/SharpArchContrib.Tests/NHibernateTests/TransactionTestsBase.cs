@@ -9,9 +9,9 @@ namespace Tests.NHibernateTests
     using NHibernate.Cfg;
     using NHibernate.Tool.hbm2ddl;
 
-    using SharpArch.Core.PersistenceSupport;
-    using SharpArch.Data.NHibernate;
-    using SharpArch.Data.NHibernate.FluentNHibernate;
+    using SharpArch.NHibernate;
+    using SharpArch.NHibernate.Contracts.Repositories;
+    using SharpArch.NHibernate.FluentNHibernate;
 
     using global::SharpArchContrib.Data.NHibernate;
 
@@ -19,7 +19,7 @@ namespace Tests.NHibernateTests
 
     public class TransactionTestsBase
     {
-        protected IRepository<TestEntity> testEntityRepository;
+        protected INHibernateRepository<TestEntity> testEntityRepository;
 
         public void SetUp()
         {
@@ -34,7 +34,7 @@ namespace Tests.NHibernateTests
 
         protected virtual void InitializeData()
         {
-            this.testEntityRepository = new Repository<TestEntity>();
+            this.testEntityRepository = new NHibernateRepository<TestEntity>();
         }
 
         private AutoPersistenceModel GetAutoPersistenceModel(string[] assemblies)

@@ -7,8 +7,8 @@
 
     using Rhino.Mocks;
 
-    using SharpArch.Core.PersistenceSupport;
-    using SharpArch.Data.NHibernate;
+    using SharpArch.Domain.PersistenceSupport;
+    using SharpArch.NHibernate;
     using SharpArch.Testing.NHibernate;
 
     using SharpArchContrib.Data.NHibernate.Search;

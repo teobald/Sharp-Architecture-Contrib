@@ -1,6 +1,6 @@
 namespace Tests.DomainModel.Entities
 {
-    using SharpArch.Core.DomainModel;
+    using SharpArch.Domain.DomainModel;
 
     public class TestEntity : Entity
     {

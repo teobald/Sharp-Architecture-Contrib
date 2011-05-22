@@ -6,7 +6,7 @@
 
     using global::NHibernate;
 
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
 
     public class ThreadSessionStorage : IUnitOfWorkSessionStorage
     {

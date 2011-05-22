@@ -7,7 +7,8 @@
 
     using NHibernate.Tool.hbm2ddl;
 
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
+    using SharpArch.NHibernate.Contracts.Repositories;
     using SharpArch.Testing.NHibernate;
 
     using SharpArchContrib.Data.NHibernate;
@@ -16,14 +17,14 @@
 
     public class specification_for_repository_search
     {
-        protected static Repository<Blog> subject;
+        protected static INHibernateRepository<Blog> subject;
         
         protected static IList<Blog> result;
 
         Establish context = () =>
             {
                 InitializeNHibernate();
-                subject = new Repository<Blog>();
+                subject = new NHibernateRepository<Blog>();
             };
 
         protected static void InitializeNHibernate()
@@ -61,7 +62,7 @@
         }
     }
 
-    [Subject(typeof(Repository<Blog>))]
+    [Subject(typeof(NHibernateRepository<Blog>))]
     public class When_the_repository_is_searched_for_a_blog_by_existing_post_title : specification_for_repository_search
     {
         Establish context = () =>

@@ -2,6 +2,7 @@ namespace Tests
 {
     using System;
 
+    using Castle.MicroKernel.Registration;
     using Castle.Windsor;
 
     using CommonServiceLocator.WindsorAdapter;
@@ -10,6 +11,9 @@ namespace Tests
 
     using global::SharpArchContrib.Castle.CastleWindsor;
     using global::SharpArchContrib.Data.NHibernate;
+
+    using SharpArch.Domain.PersistenceSupport;
+    using SharpArch.NHibernate;
 
     using Tests.NHibernateTests;
     using Tests.SharpArchContrib.Castle.Logging;
@@ -47,6 +51,7 @@ namespace Tests
                 typeof(NHibernateUnitOfWorkTestProvider));
             container.AddComponent(
                 "ExceptionHandlerTestClass", typeof(IExceptionHandlerTestClass), typeof(ExceptionHandlerTestClass));
+            container.Register(Component.For<ISessionFactoryKeyProvider>().ImplementedBy<DefaultSessionFactoryKeyProvider>().Named("SessionFactoryKeyProvider"));
         }
     }
 }

@@ -78,8 +78,14 @@
     <Reference Include="NHibernate.Search">
       <HintPath>..\..\ReferencedAssemblies\NHibernate\NHibernate.Search.dll</HintPath>
     </Reference>
-    <Reference Include="SharpArch">
-      <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.dll</HintPath>
+    <Reference Include="SharpArch.Core">
+      <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpArch.Domain">
+      <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.Domain.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpArch.NHibernate">
+      <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
