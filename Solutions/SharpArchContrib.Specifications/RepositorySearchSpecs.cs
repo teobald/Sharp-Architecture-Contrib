@@ -23,6 +23,8 @@
 
         Establish context = () =>
             {
+                ServiceLocatorHelper.InitialiseServiceLocator();
+                new DefaultSessionFactoryKeyProvider().AddToServiceLocator<ISessionFactoryKeyProvider>();
                 InitializeNHibernate();
                 subject = new NHibernateRepository<Blog>();
             };

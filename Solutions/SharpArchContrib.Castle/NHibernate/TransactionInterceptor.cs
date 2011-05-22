@@ -4,7 +4,7 @@ namespace SharpArchContrib.Castle.NHibernate
 
     using global::Castle.DynamicProxy;
 
-    using SharpArch.Data.NHibernate;
+    using SharpArch.NHibernate;
 
     using SharpArchContrib.Core;
     using SharpArchContrib.Core.Logging;
