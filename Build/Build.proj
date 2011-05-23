@@ -15,6 +15,16 @@
                                   $(SolutionsPath)\**\obj\**;">
       <PackageName>$(DropsPath)\$(GlobalBuildVersionNumber)\$(PackageName).Source.v$(GlobalBuildVersionNumber).zip</PackageName>
       <WorkingDirectory>$(SolutionsPath)</WorkingDirectory>
+	  <Flatten>False</Flatten>
+    </PackageFiles>
+	
+	<PackageFiles Include="$(SolutionsPath)\SharpArchContrib.Castle\bin\Release\SharpArchContrib.Castle.dll;
+					 $(SolutionsPath)\SharpArchContrib.Core\bin\Release\SharpArchContrib.Core.dll;
+					 $(SolutionsPath)\SharpArchContrib.Data\bin\Release\SharpArchContrib.Data.dll;
+					 $(SolutionsPath)\SharpArchContrib.PostSharp\bin\Release\SharpArchContrib.PostSharp.dll;">				 
+      <PackageName>$(DropsPath)\$(GlobalBuildVersionNumber)\$(PackageName).dlls.v$(GlobalBuildVersionNumber).zip</PackageName>
+      <WorkingDirectory>$(SolutionsPath)</WorkingDirectory>
+      <Flatten>True</Flatten>
     </PackageFiles>
   </ItemGroup>
 
