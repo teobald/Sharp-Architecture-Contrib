@@ -101,6 +101,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="CastleWindsor\ComponentRegistrar.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Logging\ExceptionHandlerAttributeSettings.cs" />
     <Compile Include="Logging\ExceptionLogger.cs" />
     <Compile Include="Logging\IExceptionLogger.cs" />
@@ -109,6 +110,10 @@
     <Compile Include="Logging\LogAttributeSettings.cs" />
     <Compile Include="Logging\LoggingLevel.cs" />
     <Compile Include="Logging\MethodLogger.cs" />
+    <Compile Include="MultiTenant\IMultiTenantEntity.cs" />
+    <Compile Include="MultiTenant\IMultiTenantQuery.cs" />
+    <Compile Include="MultiTenant\IMultiTenantRepository.cs" />
+    <Compile Include="MultiTenant\ITenantContext.cs" />
     <Compile Include="Search\IIndexBuilder.cs" />
     <Compile Include="Search\ISearchable.cs" />
     <Compile Include="ParameterCheck.cs" />

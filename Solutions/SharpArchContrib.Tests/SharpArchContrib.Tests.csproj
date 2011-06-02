@@ -131,6 +131,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\PostSharp\PostSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\ReferencedAssemblies\RhinoMocks\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="SharpArch.Domain">
       <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.Domain.dll</HintPath>
     </Reference>
@@ -206,6 +209,7 @@
     <Compile Include="NHibernateTests\TransactionTests.cs" />
     <Compile Include="NHibernateTests\TransactionTestsBase.cs" />
     <Compile Include="SharpArchContrib.Core\ParameterCheckTests.cs" />
+    <Compile Include="SharpArchContrib.Data\NHibernate\MultiTenantSessionFactoryKeyProviderTests.cs" />
     <Compile Include="SharpArchContrib.PostSharp\Logging\DebugLevelTests.cs" />
     <Compile Include="SharpArchContrib.PostSharp\Logging\ExceptionHandlerAttributeTests.cs" />
     <Compile Include="SharpArchContrib.PostSharp\NHibernate\NHibernateTransactionTestProvider.cs" />
@@ -244,9 +248,7 @@
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SharpArchContrib.Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

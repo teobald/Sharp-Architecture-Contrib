@@ -111,6 +111,7 @@
     <Compile Include="NHibernate\ITransactionAttributeSettings.cs" />
     <Compile Include="NHibernate\ITransactionManager.cs" />
     <Compile Include="NHibernate\IUnitOfWorkSessionStorage.cs" />
+    <Compile Include="NHibernate\MultiTenantSessionFactoryKeyProvider.cs" />
     <Compile Include="NHibernate\NHibernateTransactionManager.cs" />
     <Compile Include="NHibernate\Search\IndexBuilder.cs" />
     <Compile Include="NHibernate\LuceneExtensions.cs" />
