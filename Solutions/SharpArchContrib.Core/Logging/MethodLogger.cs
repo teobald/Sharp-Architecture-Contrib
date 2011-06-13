@@ -40,7 +40,7 @@ namespace SharpArchContrib.Core.Logging
                 }
 
                 logMessage.Append(")");
-                logger.Log(LoggingLevel.Debug, logMessage.ToString());
+                logger.Log(entryLevel, logMessage.ToString());
             }
         }
 
@@ -59,9 +59,8 @@ namespace SharpArchContrib.Core.Logging
             if (this.ShouldLog(logger, successLevel, methodBase))
             {
                 logger.Log(
-                    LoggingLevel.Debug, 
-                    string.Format(
-                        "{0} Returns:[{1}]", methodBase.Name, returnValue != null ? returnValue.ToString() : string.Empty));
+                    successLevel, 
+                    string.Format("{0} Returns:[{1}]", methodBase.Name, returnValue != null ? returnValue.ToString() : string.Empty));
             }
         }
 
