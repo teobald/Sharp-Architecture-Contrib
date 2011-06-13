@@ -1,5 +1,6 @@
 ﻿namespace SharpArchContrib.Data.NHibernate
 {
+    using System;
     using System.Collections.Generic;
 
     using global::NHibernate;
@@ -14,6 +15,7 @@
 
     public static class LuceneExtensions
     {
+        [CLSCompliant(false)]
         public static IList<T> Search<T, TId>(this INHibernateRepositoryWithTypedId<T, TId> repository, string searchQuery) where T : ISearchable
         {
             ISession session = NHibernateSession.CurrentFor(SessionFactoryKeyHelper.GetKeyFrom(repository));

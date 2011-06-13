@@ -52,7 +52,6 @@ namespace Tests.SharpArchContrib.PostSharp.Logging
         private float ThrowExceptionSilentWithReturn()
         {
             throw new NotImplementedException();
-            return 7f;
         }
 
         [ExceptionHandler(IsSilent = true, ReturnValue = 6f, AspectPriority = 1)]
@@ -60,7 +59,6 @@ namespace Tests.SharpArchContrib.PostSharp.Logging
         private float ThrowExceptionSilentWithReturnWithLogAttribute()
         {
             throw new NotImplementedException();
-            return 7f;
         }
     }
 }
