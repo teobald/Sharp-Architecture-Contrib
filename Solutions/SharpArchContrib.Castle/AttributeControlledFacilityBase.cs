@@ -7,6 +7,7 @@ namespace SharpArchContrib.Castle
     using global::Castle.DynamicProxy;
     using global::Castle.MicroKernel;
     using global::Castle.MicroKernel.Facilities;
+    using global::Castle.MicroKernel.Registration;
 
     using SharpArchContrib.Core;
 
@@ -28,8 +29,10 @@ namespace SharpArchContrib.Castle
 
         protected override void Init()
         {
-            this.Kernel.AddComponent(
-                this.interceptorType.Name, typeof(IInterceptor), this.interceptorType, this.lifestyleType);
+            this.Kernel.Register(Component.For<IInterceptor>()
+                .ImplementedBy(this.interceptorType)
+                .LifeStyle.Is(this.lifestyleType)
+                .Named(this.interceptorType.Name));
             this.Kernel.ComponentRegistered += this.KernelComponentRegistered;
         }
 
