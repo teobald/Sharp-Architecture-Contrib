@@ -114,8 +114,7 @@
     <Compile Include="MultiTenant\IMultiTenantQuery.cs" />
     <Compile Include="MultiTenant\IMultiTenantRepository.cs" />
     <Compile Include="MultiTenant\ITenantContext.cs" />
-    <Compile Include="Search\IIndexBuilder.cs" />
-    <Compile Include="Search\ISearchable.cs" />
+
     <Compile Include="ParameterCheck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

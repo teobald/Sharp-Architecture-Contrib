@@ -65,18 +65,12 @@
     <Reference Include="log4net">
       <HintPath>..\..\ReferencedAssemblies\Log4Net\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Lucene.Net">
-      <HintPath>..\..\ReferencedAssemblies\Lucene.Net\Lucene.Net.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\ReferencedAssemblies\Microsoft\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\ReferencedAssemblies\NHibernate\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.Search">
-      <HintPath>..\..\ReferencedAssemblies\NHibernate\NHibernate.Search.dll</HintPath>
     </Reference>
     <Reference Include="SharpArch.Domain">
       <HintPath>..\..\ReferencedAssemblies\SharpArch\SharpArch.Domain.dll</HintPath>
@@ -113,8 +107,6 @@
     <Compile Include="NHibernate\IUnitOfWorkSessionStorage.cs" />
     <Compile Include="NHibernate\MultiTenantSessionFactoryKeyProvider.cs" />
     <Compile Include="NHibernate\NHibernateTransactionManager.cs" />
-    <Compile Include="NHibernate\Search\IndexBuilder.cs" />
-    <Compile Include="NHibernate\LuceneExtensions.cs" />
     <Compile Include="NHibernate\ThreadSafeDictionary.cs" />
     <Compile Include="NHibernate\ThreadSessionStorage.cs" />
     <Compile Include="NHibernate\SystemTransactionManager.cs" />
