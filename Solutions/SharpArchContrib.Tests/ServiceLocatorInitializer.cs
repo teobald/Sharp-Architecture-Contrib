@@ -9,11 +9,12 @@ namespace Tests
 
     using Microsoft.Practices.ServiceLocation;
 
-    using global::SharpArchContrib.Castle.CastleWindsor;
-    using global::SharpArchContrib.Data.NHibernate;
-
     using SharpArch.Domain.PersistenceSupport;
     using SharpArch.NHibernate;
+
+    using global::SharpArchContrib.Castle.CastleWindsor;
+
+    using global::SharpArchContrib.Data.NHibernate;
 
     using Tests.NHibernateTests;
     using Tests.SharpArchContrib.Castle.Logging;

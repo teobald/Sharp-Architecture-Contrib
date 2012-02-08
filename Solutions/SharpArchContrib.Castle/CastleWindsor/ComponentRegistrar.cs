@@ -22,8 +22,8 @@ namespace SharpArchContrib.Castle.CastleWindsor
 
             if (!container.Kernel.HasComponent("LogInterceptor"))
             {
-                Core.CastleWindsor.ComponentRegistrar.AddComponentsTo(container);
-                Data.CastleWindsor.ComponentRegistrar.AddComponentsTo(container, transactionManagerType);
+                Core.CastleWindsor.CoreComponentRegistrar.AddComponentsTo(container);
+                Data.CastleWindsor.NHibernateTransactionsComponentRegistrar.AddComponentsTo(container, transactionManagerType);
                 container.AddFacility("LogFacility", new LogFacility());
                 container.AddFacility("ExceptionHandlerFacility", new ExceptionHandlerFacility());
                 container.AddFacility("TransactionFacility", new TransactionFacility());

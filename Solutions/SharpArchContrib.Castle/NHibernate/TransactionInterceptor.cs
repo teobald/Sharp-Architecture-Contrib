@@ -2,13 +2,13 @@ namespace SharpArchContrib.Castle.NHibernate
 {
     using System;
 
-    using global::Castle.DynamicProxy;
-
     using SharpArch.NHibernate;
 
     using SharpArchContrib.Core;
     using SharpArchContrib.Core.Logging;
     using SharpArchContrib.Data.NHibernate;
+
+    using global::Castle.DynamicProxy;
 
     public class TransactionInterceptor : IInterceptor
     {
