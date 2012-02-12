@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 #ignore outputs of project
 BuildOutput*/
+Drops/
 CommonAssemblyInfo.cs
 #ignore thumbnails created by windows
 Thumbs.db
@@ -27,25 +27,13 @@ Thumbs.db
 *.lib
 *.sbr
 obj/
-[Rr]elease*/
+Solutions/**/[Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
-=======
-obj
-bin
-debug
-_Resharper.*
-_ReSharper.*
-*.csproj.user
-*.resharper.user
-*.ReSharper.user
-*.resharper
+[Ss]pecification[Rr]eports
+[Pp]ackages
+NugetWorkspace
+StyleCop.Cache
 *.ReSharper
-*.suo
-*.cache
-*~
-*.swp
-*.dbproj.user
-*.dbmdl
-error-*.xml
->>>>>>> 9d09b9d1896b349a88245e823ee3ff7e6dd9d74a
+*.dotCover
+*_mm_cache.bin
