@@ -49,6 +49,22 @@
             testLogger2.GetMessageNotLogged("message3");
         }
 
+        private void TryLoggingViaForwardedType()
+        {
+            var testClass = ServiceLocator.Current.GetInstance<IAmForwarded>();
+            testClass.MethodFromForwarded();
+        }
+
+        private string ReadLogFile(string logPath)
+        {
+            using (var fs = new FileStream(logPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                using (var sr = new StreamReader(fs))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
+        }
         public class TestLogger2
         {
             [Log]
@@ -67,6 +83,24 @@
             {
                 return message;
             }
+        }
+
+        // issue#1 https://github.com/sharparchitecture/Sharp-Architecture-Contrib/issues#issue/1
+        [Test]
+        public void LoggingViaForwardedTypeWorks() 
+        {
+            var logPath =
+                Path.GetFullPath(@"TestData/Tests.SharpArchContrib.Castle.Logging.DebugLevelTests.DebugLevel.log");
+            TryLoggingViaForwardedType();
+            File.Exists(logPath).ShouldBeTrue();
+            var debugLogInfo = new FileInfo(logPath);
+            debugLogInfo.Length.ShouldBeGreaterThan(0);
+            var logFileContents = ReadLogFile(logPath);
+            string messageThatShouldBeLoggedOnce = "MethodFromForwarded()";
+            int firstOccurenceLocation = logFileContents.IndexOf(messageThatShouldBeLoggedOnce);
+            int lastOccurenceLocation = logFileContents.LastIndexOf(messageThatShouldBeLoggedOnce);
+            firstOccurenceLocation.ShouldBeGreaterThan(0);
+            firstOccurenceLocation.ShouldEqual(lastOccurenceLocation);
         }
     }
 }

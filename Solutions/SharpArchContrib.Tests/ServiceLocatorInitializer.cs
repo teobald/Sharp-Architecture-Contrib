@@ -39,6 +39,7 @@ namespace Tests
         {
             container.Register(Component.For<ILogTestClass>()
                 .ImplementedBy<LogTestClass>()
+                .Forward<IAmForwarded>()
                 .Named("logTestClass"));
             container.Register(Component.For<ITransactionTestProvider>()
                 .ImplementedBy<SystemTransactionTestProvider>()

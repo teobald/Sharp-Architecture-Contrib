@@ -1,3 +1,23 @@
+Version 0.6.1
+==============================================================================
+* Assembly version left at 0.6.0 for easier upgrade
+Fixed issue #1 https://github.com/sharparchitecture/Sharp-Architecture-Contrib/issues#issue/1
+Fixed issue #2 https://github.com/sharparchitecture/Sharp-Architecture-Contrib/issues#issue/2
+
+Version 0.6.0
+==============================================================================
+Introduced SharpArchContrib.Web.Mvc and RazorViewEngine
+Changed MethodLogger to use the logging level specified instead of always using Debug level
+
+Version 0.5.0
+==============================================================================
+Update to .Net4 VS2010
+Works with SharpArch 1.9.5
+
+Version 0.4.0
+==============================================================================
+Works with SharpArch 1.9
+
 Version 0.3.0
 ==============================================================================
 Removed PostSharp support.  If you were using PostSharp, you can use
