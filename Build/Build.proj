@@ -6,14 +6,19 @@
     <SolutionsPath>$(MSBuildProjectDirectory)\..\Solutions</SolutionsPath>
     <BuildPath>$(MSBuildProjectDirectory)\..\BuildSystem</BuildPath>
     <SolutionRoot>$(BuildPath)\..\..</SolutionRoot>
+	<VersionMajor>1</VersionMajor>
+	<VersionMinor>0</VersionMinor>
+	<VersionPatch>0</VersionPatch>
+	<VersionPreRelease>RC</VersionPreRelease>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageFiles Include="$(SolutionsPath)\**\*.*"
                        Exclude="$(SolutionsPath)\**\bin\**;
                                   $(SolutionsPath)\**\Logs\**;
-                                  $(SolutionsPath)\**\obj\**;">
-      <PackageName>$(DropsPath)\$(GlobalBuildVersionNumber)\$(PackageName).Source.v$(GlobalBuildVersionNumber).zip</PackageName>
+                                  $(SolutionsPath)\**\obj\**;
+								  $(SolutionsPath)\_Resharper*\**;">
+      <PackageName>$(DropsPath)\$(SemanticVersion)\$(PackageName).Source.v$(SemanticVersion).zip</PackageName>
       <WorkingDirectory>$(SolutionsPath)</WorkingDirectory>
 	  <Flatten>False</Flatten>
     </PackageFiles>
@@ -22,12 +27,32 @@
 					 $(SolutionsPath)\SharpArchContrib.Core\bin\Release\SharpArchContrib.Core.dll;
 					 $(SolutionsPath)\SharpArchContrib.Data\bin\Release\SharpArchContrib.Data.dll;
 					 $(SolutionsPath)\SharpArchContrib.PostSharp\bin\Release\SharpArchContrib.PostSharp.dll;">				 
-      <PackageName>$(DropsPath)\$(GlobalBuildVersionNumber)\$(PackageName).dlls.v$(GlobalBuildVersionNumber).zip</PackageName>
+      <PackageName>$(DropsPath)\$(SemanticVersion)\$(PackageName).dlls.v$(SemanticVersion).zip</PackageName>
       <WorkingDirectory>$(SolutionsPath)</WorkingDirectory>
       <Flatten>True</Flatten>
     </PackageFiles>
   </ItemGroup>
 
+  <ItemGroup>
+    <NugetPackage Include="$(SolutionsPath)\SharpArchContrib.Core\bin\Release\SharpArchContrib.Core.dll;
+						   $(SolutionsPath)\SharpArchContrib.Core\bin\Release\SharpArchContrib.Core.pdb;">
+      <PackageName>SharpArchContrib.Core</PackageName>
+	  <NuspecFile>SharpArchContrib.Core.nuspec</NuspecFile>
+    </NugetPackage>
+	
+	<NugetPackage Include="$(SolutionsPath)\SharpArchContrib.Data\bin\Release\SharpArchContrib.Data.dll;
+						   $(SolutionsPath)\SharpArchContrib.Data\bin\Release\SharpArchContrib.Data.pdb;">
+      <PackageName>SharpArchContrib.Data</PackageName>
+	  <NuspecFile>SharpArchContrib.Data.nuspec</NuspecFile>
+    </NugetPackage>
+	
+	<NugetPackage Include="$(SolutionsPath)\SharpArchContrib.Castle\bin\Release\SharpArchContrib.Castle.dll;
+						   $(SolutionsPath)\SharpArchContrib.Castle\bin\Release\SharpArchContrib.Castle.pdb;">
+      <PackageName>SharpArchContrib.Castle</PackageName>
+	  <NuspecFile>SharpArchContrib.Castle.nuspec</NuspecFile>
+    </NugetPackage>
+  </ItemGroup>
+  
   <ItemGroup>
     <AssembliesToTestWithNUnit Include="$(SolutionsPath)\SharpArchContrib.Tests\bin\Release\SharpArchContrib.Tests.dll" />
   </ItemGroup>
@@ -46,6 +71,7 @@
   <Target Name="PackageArtefacts"
           DependsOnTargets="RunTests;
                             Package;
+							PackageNuget;
                             BuildSuccess" />
 
 </Project>

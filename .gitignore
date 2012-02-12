@@ -32,6 +32,7 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 [Ss]pecification[Rr]eports
 [Pp]ackages
+NugetWorkspace
 StyleCop.Cache
 *.ReSharper
 *.dotCover
