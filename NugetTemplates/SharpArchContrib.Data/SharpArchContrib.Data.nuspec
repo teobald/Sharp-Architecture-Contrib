@@ -7,7 +7,7 @@
     <owners>Sharp Architecture Dev Team</owners>
     <licenseUrl>https://github.com/sharparchitecture/Sharp-Architecture-Contrib/blob/master/license.txt</licenseUrl>
     <projectUrl>https://github.com/sharparchitecture/Sharp-Architecture-Contrib/</projectUrl>
-    <iconUrl>http://github.com/sharparchitecture/Sharp-Architecture/blob/master/Artefacts/Documentation/Logo_100x100.png</iconUrl>
+    <iconUrl>https://github.com/sharparchitecture/Sharp-Architecture/raw/master/Artefacts/Documentation/Logo_100x100.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides a ThreadSafeSessionStorage that enables using SharpArchitecture outside a web project. Also provides classes for managing NHibernate transactions and units of work that are used by SharpArchContrib.Castle and SharpArchContrib.Postsharp attributes.</description>
 	<dependencies>

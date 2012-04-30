@@ -7,7 +7,7 @@
     <owners>Sharp Architecture Dev Team</owners>
     <licenseUrl>https://github.com/sharparchitecture/Sharp-Architecture-Contrib/blob/master/license.txt</licenseUrl>
     <projectUrl>https://github.com/sharparchitecture/Sharp-Architecture-Contrib/</projectUrl>
-    <iconUrl>http://github.com/sharparchitecture/Sharp-Architecture/blob/master/Artefacts/Documentation/Logo_100x100.png</iconUrl>
+    <iconUrl>https://github.com/sharparchitecture/Sharp-Architecture/raw/master/Artefacts/Documentation/Logo_100x100.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Provides logging (using log4net) and exception handling classes used by SharpArchContrib.Castle and SharpArchContrib.Postsharp. Also contains interfaces for adding multi tenancy data access to a sharp architecture project.</description>
     <dependencies>      
