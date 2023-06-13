@@ -1,7 +1,7 @@
 namespace SharpArchContrib.Core
 {
+    using System;
     using System.Collections.Generic;
-
     using SharpArch.Domain;
 
     public static class ParameterCheck
@@ -13,9 +13,11 @@ namespace SharpArchContrib.Core
             StringRequiredAndNotEmpty(key, "key");
             StringRequiredAndNotEmpty(dictionaryName, "dictionaryName");
 
-            Check.Require(
-                dictionary.ContainsKey(key), 
-                string.Format("Dictionary parameter {0} must contain an entry with key value {1}", dictionaryName, key));
+            if (!dictionary.ContainsKey(key))
+            {
+                throw new ArgumentException(
+                    string.Format("Dictionary parameter {0} must contain an entry with key value {1}", dictionaryName, key));
+            }
         }
 
         public static void DictionaryContainsKey(
@@ -25,23 +27,31 @@ namespace SharpArchContrib.Core
             StringRequiredAndNotEmpty(key, "key");
             StringRequiredAndNotEmpty(dictionaryName, "dictionaryName");
 
-            Check.Require(
-                dictionary.ContainsKey(key), 
-                string.Format("Dictionary parameter {0} must contain an entry with key value {1}", dictionaryName, key));
+            if (!dictionary.ContainsKey(key))
+            {
+                throw new ArgumentException(
+                    string.Format("Dictionary parameter {0} must contain an entry with key value {1}", dictionaryName, key));
+            }
         }
 
         public static void ParameterRequired(object parameter, string parameterName)
         {
             ParameterNameRequired(parameterName);
 
-            Check.Require(parameter != null, GetParameterRequiredErrorMessage(parameterName));
+            if (parameter == null)
+            {
+                throw new ArgumentNullException(parameterName, GetParameterRequiredErrorMessage(parameterName));
+            }
         }
 
         public static void StringRequiredAndNotEmpty(string parameter, string parameterName)
         {
             ParameterNameRequired(parameterName);
 
-            Check.Require(!string.IsNullOrEmpty(parameter), GetParameterRequiredErrorMessage(parameterName));
+            if (string.IsNullOrEmpty(parameter))
+            {
+                throw new ArgumentException(GetParameterRequiredErrorMessage(parameterName), parameterName);
+            }
         }
 
         private static string GetParameterRequiredErrorMessage(string parameterName)
@@ -51,7 +61,10 @@ namespace SharpArchContrib.Core
 
         private static void ParameterNameRequired(string parameterName)
         {
-            Check.Require(!string.IsNullOrEmpty(parameterName), GetParameterRequiredErrorMessage("parameterName"));
+            if (string.IsNullOrEmpty(parameterName))
+            {
+                throw new ArgumentException(GetParameterRequiredErrorMessage("parameterName"), "parameterName");
+            }
         }
     }
 }

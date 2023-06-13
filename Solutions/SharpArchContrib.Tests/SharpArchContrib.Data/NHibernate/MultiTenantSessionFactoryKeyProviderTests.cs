@@ -1,4 +1,6 @@
-﻿namespace Tests.SharpArchContrib.Data.NHibernate
+﻿using SharpArch.Testing.NUnit;
+
+namespace Tests.SharpArchContrib.Data.NHibernate
 {
     using NUnit.Framework;
 
@@ -7,7 +9,6 @@
     using SharpArch.Domain.DomainModel;
     using SharpArch.Domain.PersistenceSupport;
     using SharpArch.NHibernate;
-    using SharpArch.Testing.NUnit;
 
     using global::SharpArchContrib.Core.MultiTenant;
     using global::SharpArchContrib.Data.NHibernate;

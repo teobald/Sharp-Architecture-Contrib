@@ -32,26 +32,6 @@
       <Flatten>True</Flatten>
     </PackageFiles>
   </ItemGroup>
-
-  <ItemGroup>
-    <NugetPackage Include="$(SolutionsPath)\SharpArchContrib.Core\bin\Release\SharpArchContrib.Core.dll;
-						   $(SolutionsPath)\SharpArchContrib.Core\bin\Release\SharpArchContrib.Core.pdb;">
-      <PackageName>SharpArchContrib.Core</PackageName>
-	  <NuspecFile>SharpArchContrib.Core.nuspec</NuspecFile>
-    </NugetPackage>
-	
-	<NugetPackage Include="$(SolutionsPath)\SharpArchContrib.Data\bin\Release\SharpArchContrib.Data.dll;
-						   $(SolutionsPath)\SharpArchContrib.Data\bin\Release\SharpArchContrib.Data.pdb;">
-      <PackageName>SharpArchContrib.Data</PackageName>
-	  <NuspecFile>SharpArchContrib.Data.nuspec</NuspecFile>
-    </NugetPackage>
-	
-	<NugetPackage Include="$(SolutionsPath)\SharpArchContrib.Castle\bin\Release\SharpArchContrib.Castle.dll;
-						   $(SolutionsPath)\SharpArchContrib.Castle\bin\Release\SharpArchContrib.Castle.pdb;">
-      <PackageName>SharpArchContrib.Castle</PackageName>
-	  <NuspecFile>SharpArchContrib.Castle.nuspec</NuspecFile>
-    </NugetPackage>
-  </ItemGroup>
   
   <ItemGroup>
     <AssembliesToTestWithNUnit Include="$(SolutionsPath)\SharpArchContrib.Tests\bin\Release\SharpArchContrib.Tests.dll" />
@@ -67,11 +47,5 @@
   <Target Name="RunTests"
           DependsOnTargets="Build;
                             RunNUnitTests;" />
-  
-  <Target Name="PackageArtefacts"
-          DependsOnTargets="RunTests;
-                            Package;
-							PackageNuget;
-                            BuildSuccess" />
 
 </Project>
